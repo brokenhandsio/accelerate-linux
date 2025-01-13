@@ -1,0 +1,32 @@
+{
+    "name": "Swift",
+    "image": "swift:6.0",
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": "false",
+            "username": "vscode",
+            "upgradePackages": "false"
+        },
+        "ghcr.io/devcontainers/features/git:1": {
+            "version": "os-provided",
+            "ppa": "false"
+        }
+    },
+    "runArgs": [
+        "--cap-add=SYS_PTRACE",
+        "--security-opt",
+        "seccomp=unconfined"
+    ],
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libblas-dev liblapack-dev",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "lldb.library": "/usr/lib/liblldb.so"
+            },
+            "extensions": [
+                "sswg.swift-lang"
+            ]
+        }
+    },
+    "remoteUser": "vscode"
+}

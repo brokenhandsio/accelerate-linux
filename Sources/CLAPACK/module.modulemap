@@ -1,0 +1,5 @@
+module CLAPACK {
+    header "clapack.h"
+    link "lapack"
+    export *
+}
