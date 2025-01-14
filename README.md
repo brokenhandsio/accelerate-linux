@@ -37,7 +37,7 @@ The package is structured as follows:
         - [x] `vDSP_mtransD` - Transpose a matrix
         - [ ] `vDSP_mmulD` - Matrix multiplication
     - `LAPACK` - LAPACK functions:
-        - [ ] `dgesv_` - Solve a system of linear equations
+        - [x] `dgesv_` - Solve a system of linear equations
         - [x] `dgesvd_` - Singular Value Decomposition
         - [ ] `dgetrf_` - LU Decomposition
         - [ ] `dgetri_` - Inverse of a matrix

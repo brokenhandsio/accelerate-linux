@@ -16,7 +16,10 @@ jobs:
         run: swift-format lint --recursive --strict --parallel .
       - name: Install BLAS & LAPACK
         run: apt-get update && apt-get install -y libblas-dev liblapack-dev
-      - name: Build
+      - name: Build (CLPK)
         run: swift build
-      - name: Test
-        run: swift test --enable-code-coverage
+      - name: Test (CLPK)
+        run: swift test -Xswiftc -DACCELERATE_NEW_LAPACK
+      - name: Build (LAPACK)
+        run: swift build -Xswiftc -DACCELERATE_NEW_LAPACK
+
