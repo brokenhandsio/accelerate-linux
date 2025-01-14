@@ -22,6 +22,12 @@ import AccelerateLinux
 
 and then call through to normal Accelerate functions. 
 
+> ![NOTE]
+> To use this on linux you will need BLAS and LAPACK installed. On Ubuntu you can install these with:
+>```bash
+> apt-get install libblas-dev liblapack-dev
+>```
+
 ## Structure 
 
 The package is structured as follows:
