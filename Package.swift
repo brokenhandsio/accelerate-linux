@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "AccelerateLinux",
+    name: "accelerate-linux",
     products: [
         .library(
             name: "AccelerateLinux",
