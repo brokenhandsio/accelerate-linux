@@ -1,0 +1,20 @@
+name: Lint, Build & Test
+on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: swift:noble
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Lint
+        run: swift-format lint --recursive --strict --parallel .
+      - name: Build
+        run: swift build
+      - name: Test
+        run: swift test --enable-code-coverage
