@@ -69,4 +69,4 @@ public func vDSP_mtransD(
         }
     }
 }
-#endif
+#endif  // canImport(Accelerate)

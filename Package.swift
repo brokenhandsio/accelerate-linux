@@ -7,7 +7,7 @@ let package = Package(
         .library(
             name: "AccelerateLinux",
             targets: ["AccelerateLinux"]
-        ),
+        )
     ],
     targets: [
         .target(

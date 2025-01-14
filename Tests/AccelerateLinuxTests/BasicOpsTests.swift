@@ -1,10 +1,11 @@
 import AccelerateLinux
+import Foundation
 import Testing
 
 @Suite("vDSP Tests")
 struct vDSPTests {
     @Test("maxvD Simple")
-    func vDSP_maxvDSimpleTest() async throws {
+    func vDSP_maxvDSimpleTest() {
         let stride = vDSP_Stride(1)
         let a: [Double] = [-1.5, 2.25, 3.6, 0.2, -0.1, -4.3]
         let n = vDSP_Length(a.count)
@@ -15,7 +16,7 @@ struct vDSPTests {
     }
 
     @Test("maxvD Empty Array")
-    func vDSP_maxvDEmptyArrayTest() async throws {
+    func vDSP_maxvDEmptyArrayTest() {
         let stride = vDSP_Stride(1)
         let a: [Double] = []
         let n = vDSP_Length(a.count)
@@ -26,7 +27,7 @@ struct vDSPTests {
     }
 
     @Test("minvD Simple")
-    func vDSP_minvDSimpleTest() async throws {
+    func vDSP_minvDSimpleTest() {
         let stride = vDSP_Stride(1)
         let a: [Double] = [-1.5, 2.25, 3.6, 0.2, -0.1, -4.3]
         let n = vDSP_Length(a.count)
@@ -37,7 +38,7 @@ struct vDSPTests {
     }
 
     @Test("minvD Empty Array")
-    func vDSP_minvDEmptyArrayTest() async throws {
+    func vDSP_minvDEmptyArrayTest() {
         let stride = vDSP_Stride(1)
         let a: [Double] = []
         let n = vDSP_Length(a.count)
@@ -48,7 +49,7 @@ struct vDSPTests {
     }
 
     @Test("mtransD")
-    func vDSP_mtransDTest() async throws {
+    func vDSP_mtransDTest() {
         let source: [Double] = [
             1, 2, 3, 4,
             5, 6, 7, 8,
