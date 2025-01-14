@@ -39,7 +39,7 @@ The package is structured as follows:
     - `LAPACK` - LAPACK functions:
         - [x] `dgesv_` - Solve a system of linear equations
         - [x] `dgesvd_` - Singular Value Decomposition
-        - [ ] `dgetrf_` - LU Decomposition
+        - [x] `dgetrf_` - LU Decomposition
         - [ ] `dgetri_` - Inverse of a matrix
         - [ ] `dgeev_` - Eigenvalues and eigenvectors
         - [ ] `dpotrf_` - Cholesky decomposition

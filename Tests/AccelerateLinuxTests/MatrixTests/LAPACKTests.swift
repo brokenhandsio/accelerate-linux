@@ -113,4 +113,39 @@ struct LAPACKTests {
 
         // Note: if we care about orthogonality of U and V we should check those too
     }
+
+    // https://numericalalgorithmsgroup.github.io/LAPACK_Examples/examples/doc/dgetrf_example.html
+    @Test("dgetrf_")
+    func test_dgetrf_() {
+        let M = 4
+        let N = 4
+        let LDA = M
+
+        var m = __CLPK_integer(M)
+        var n = __CLPK_integer(N)
+        var lda = __CLPK_integer(LDA)
+        var info = __CLPK_integer(0)
+
+        var ipiv = [__CLPK_integer](repeating: 0, count: Int(min(m, n)))
+
+        var a: [__CLPK_doublereal] = [
+            1.80, 5.25, 1.58, -1.11,
+            2.88, -2.95, -2.69, -0.66,
+            2.05, -0.95, -2.90, -0.59,
+            -0.89, -3.80, -1.04, 0.80,
+        ]
+
+        _ = dgetrf_(&m, &n, &a, &lda, &ipiv, &info)
+
+        #expect(
+            a.map {
+                ($0 * pow(10, 2)).rounded() / pow(10, 2)
+            } == [
+                5.25, 0.34, 0.30, -0.21,
+                -2.95, 3.89, -0.46, -0.33,
+                -0.95, 2.38, -1.51, 0.00,
+                -3.8, 0.41, 0.29, 0.13,
+            ]
+        )
+    }
 }

@@ -54,4 +54,24 @@ public func dgesvd_(
     _ __lwork: UnsafeMutablePointer<__CLPK_integer>!,
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
 )
+
+/// DGETRF computes an LU factorization of a general M-by-N matrix A
+/// using partial pivoting with row interchanges.
+///
+/// The factorization has the form
+///    A = P * L * U
+/// where P is a permutation matrix, L is lower triangular with unit
+/// diagonal elements (lower trapezoidal if m > n), and U is upper
+/// triangular (upper trapezoidal if m < n).
+///
+/// This is the right-looking Level 3 BLAS version of the algorithm.
+@_silgen_name("dgetrf_")
+public func dgetrf_(
+    _ __m: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __ipiv: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __info: UnsafeMutablePointer<__CLPK_integer>!
+) -> Int32
 #endif  // canImport(Accelerate)
