@@ -23,7 +23,7 @@ public func dgesv_(
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
 )
 
-/// DGESVD computes the singular value decomposition (SVD) of a real
+/// Computes the singular value decomposition (SVD) of a real
 /// M-by-N matrix A, optionally computing the left and/or right singular
 /// vectors. The SVD is written
 ///
@@ -55,7 +55,7 @@ public func dgesvd_(
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
 )
 
-/// DGETRF computes an LU factorization of a general M-by-N matrix A
+/// Computes an LU factorization of a general M-by-N matrix A
 /// using partial pivoting with row interchanges.
 ///
 /// The factorization has the form
@@ -72,6 +72,22 @@ public func dgetrf_(
     _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
     _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
     _ __ipiv: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __info: UnsafeMutablePointer<__CLPK_integer>!
+) -> Int32
+
+/// Computes the inverse of a matrix using the LU factorization
+/// computed by ``dgterf_``.
+///
+/// This method inverts U and then computes `inv(A)` by solving the system
+/// `inv(A)*L = inv(U) for inv(A)`.
+@_silgen_name("dgetri_")
+public func dgetri_(
+    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __ipiv: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __work: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __lwork: UnsafeMutablePointer<__CLPK_integer>!,
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
 ) -> Int32
 #endif  // canImport(Accelerate)
