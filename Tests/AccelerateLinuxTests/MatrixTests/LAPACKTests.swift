@@ -189,4 +189,76 @@ struct LAPACKTests {
             ]
         )
     }
+
+    // https://www.intel.com/content/www/us/en/docs/onemkl/code-samples-lapack/2025-0/dgeev-example-c.html
+    @Test("dgeev_")
+    func test_dgeev_() {
+        let N = 5
+        let LDA = N
+        let LDVL = N
+        let LDVR = N
+
+        var n = __CLPK_integer(N)
+        var lda = __CLPK_integer(LDA)
+        var ldvl = __CLPK_integer(LDVL)
+        var ldvr = __CLPK_integer(LDVR)
+        var info = __CLPK_integer(0)
+        var lwork = __CLPK_integer(0)
+        var wkopt = __CLPK_doublereal(0)
+        var work = [__CLPK_doublereal](repeating: 0, count: Int(lwork))
+
+        var a: [__CLPK_doublereal] = [
+            -1.01, 3.98, 3.30, 4.43, 7.31,
+            0.86, 0.53, 8.26, 4.96, -6.43,
+            -4.60, -7.04, -3.89, -7.66, -6.16,
+            3.31, 5.29, 8.20, -7.33, 2.47,
+            -4.81, 3.55, -1.51, 6.18, 5.58,
+        ]
+
+        var wr = [__CLPK_doublereal](repeating: 0, count: Int(n))
+        var wi = [__CLPK_doublereal](repeating: 0, count: Int(n))
+        var vl = [__CLPK_doublereal](repeating: 0, count: Int(ldvl * n))
+        var vr = [__CLPK_doublereal](repeating: 0, count: Int(ldvr * n))
+
+        let jobvl = "N"
+        let jobvr = "V"
+
+        jobvl.withCString { jobvlPtr in
+            jobvr.withCString { jobvrPtr in
+                let mutableJobvlPtr = UnsafeMutablePointer(mutating: jobvlPtr)
+                let mutableJobvrPtr = UnsafeMutablePointer(mutating: jobvrPtr)
+
+                lwork = -1
+                _ = dgeev_(
+                    mutableJobvlPtr, mutableJobvrPtr, &n, &a, &lda, &wr, &wi, &vl, &ldvl, &vr, &ldvr, &wkopt, &lwork, &info
+                )
+
+                lwork = __CLPK_integer(wkopt)
+                work = [__CLPK_doublereal](repeating: 0, count: Int(lwork))
+
+                _ = dgeev_(
+                    mutableJobvlPtr, mutableJobvrPtr, &n, &a, &lda, &wr, &wi, &vl, &ldvl, &vr, &ldvr, &work, &lwork, &info
+                )
+            }
+        }
+
+        if info != 0 {
+            Issue.record("The algorithm failed to compute eigenvalues.")
+            return
+        }
+        
+        // Check Eigenvalues
+        let expected = [(2.86, 10.76), (2.86, -10.76), (-0.69, 4.70), (-0.69, -4.70), (-10.46, 0.00)]
+        #expect(
+            wr.map {
+                ($0 * 100).rounded() / 100
+            } == expected.map { $0.0 }
+        )
+        
+        #expect(
+            wi.map {
+                ($0 * 100).rounded() / 100
+            } == expected.map { $0.1 }
+        )
+    }
 }

@@ -90,4 +90,34 @@ public func dgetri_(
     _ __lwork: UnsafeMutablePointer<__CLPK_integer>!,
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
 ) -> Int32
+
+/// Computes for an N-by-N real nonsymmetric matrix A, the
+/// eigenvalues and, optionally, the left and/or right eigenvectors.
+///
+/// The right eigenvector v(j) of A satisfies
+///                  `A * v(j) = lambda(j) * v(j)`
+/// where lambda(j) is its eigenvalue.
+/// The left eigenvector u(j) of A satisfies
+///               `u(j)**H * A = lambda(j) * u(j)**H`
+/// where `u(j)**H` denotes the conjugate-transpose of `u(j)`.
+///
+/// The computed eigenvectors are normalized to have Euclidean norm
+/// equal to 1 and largest component real.
+@_silgen_name("dgeev_")
+public func dgeev_(
+    _ __jobvl: UnsafeMutablePointer<CChar>!,
+    _ __jobvr: UnsafeMutablePointer<CChar>!,
+    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __wr: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __wi: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __vl: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __ldvl: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __vr: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __ldvr: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __work: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __lwork: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __info: UnsafeMutablePointer<__CLPK_integer>!
+) -> Int32
 #endif  // canImport(Accelerate)

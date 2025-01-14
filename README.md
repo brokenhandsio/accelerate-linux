@@ -40,8 +40,8 @@ The package is structured as follows:
         - [x] `dgesv_` - Solve a system of linear equations
         - [x] `dgesvd_` - Singular Value Decomposition
         - [x] `dgetrf_` - LU Decomposition
-        - [ ] `dgetri_` - Inverse of a matrix
-        - [ ] `dgeev_` - Eigenvalues and eigenvectors
+        - [x] `dgetri_` - Inverse of a matrix
+        - [x] `dgeev_` - Eigenvalues and eigenvectors
         - [ ] `dpotrf_` - Cholesky decomposition
         - [ ] `dtrtrs_` - Solve a triangular system of linear equations
     - `CBLAS` - BLAS functions:
