@@ -246,7 +246,7 @@ struct LAPACKTests {
             Issue.record("The algorithm failed to compute eigenvalues.")
             return
         }
-        
+
         // Check Eigenvalues
         let expected = [(2.86, 10.76), (2.86, -10.76), (-0.69, 4.70), (-0.69, -4.70), (-10.46, 0.00)]
         #expect(
@@ -254,11 +254,46 @@ struct LAPACKTests {
                 ($0 * 100).rounded() / 100
             } == expected.map { $0.0 }
         )
-        
+
         #expect(
             wi.map {
                 ($0 * 100).rounded() / 100
             } == expected.map { $0.1 }
         )
+    }
+
+    // https://numericalalgorithmsgroup.github.io/LAPACK_Examples/examples/doc/dpotrf_example.html
+    @Test("dpotrf_")
+    func test_dpotrf_() {
+        let N = 4
+        let LDA = N
+
+        var n = __CLPK_integer(N)
+        var lda = __CLPK_integer(LDA)
+        var info = __CLPK_integer(0)
+
+        var a: [__CLPK_doublereal] = [
+            4.16, -3.12, 0.56, -0.10,
+            0.00, 5.03, -0.83, 1.18,
+            0.00, 0.00, 0.76, 0.34,
+            0.00, 0.00, 0.00, 1.18,
+        ]
+
+        "L".withCString { uploPtr in
+            let mutableUploPtr = UnsafeMutablePointer(mutating: uploPtr)
+            _ = dpotrf_(mutableUploPtr, &n, &a, &lda, &info)
+        }
+
+        #expect(
+            a.map {
+                ($0 * pow(10, 2)).rounded() / pow(10, 2)
+            } == [
+                2.04, -1.53, 0.27, -0.05,
+                0.00, 1.64, -0.25, 0.67,
+                0.00, 0.00, 0.79, 0.66,
+                0.00, 0.00, 0.00, 0.53,
+            ]
+        )
+
     }
 }

@@ -120,4 +120,21 @@ public func dgeev_(
     _ __lwork: UnsafeMutablePointer<__CLPK_integer>!,
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
 ) -> Int32
+
+/// Computes the Cholesky factorization of a real symmetric positive definite matrix A.
+///
+/// The factorization has the form
+///   A = U**T * U,  if UPLO = 'U', or
+///   A = L * L**T,  if UPLO = 'L',
+/// where U is an upper triangular matrix and L is lower triangular.
+///
+/// This is the block version of the algorithm, calling Level 3 BLAS.
+@_silgen_name("dpotrf_")
+public func dpotrf_(
+    _ __uplo: UnsafeMutablePointer<CChar>!,
+    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __info: UnsafeMutablePointer<__CLPK_integer>!
+) -> Int32
 #endif  // canImport(Accelerate)

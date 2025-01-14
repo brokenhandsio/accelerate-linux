@@ -42,7 +42,7 @@ The package is structured as follows:
         - [x] `dgetrf_` - LU Decomposition
         - [x] `dgetri_` - Inverse of a matrix
         - [x] `dgeev_` - Eigenvalues and eigenvectors
-        - [ ] `dpotrf_` - Cholesky decomposition
+        - [x] `dpotrf_` - Cholesky decomposition
         - [ ] `dtrtrs_` - Solve a triangular system of linear equations
     - `CBLAS` - BLAS functions:
         - [ ] `cblas_dgemm` - Matrix multiplication
