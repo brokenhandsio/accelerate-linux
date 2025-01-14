@@ -2,8 +2,6 @@
 @_exported import Accelerate
 #else
 import CLAPACK
-
-#if ACCELERATE_NEW_LAPACK
 /// DGESV computes the solution to a real system of linear equations
 ///     A * X = B,
 /// where A is an N-by-N matrix and X and B are N-by-NRHS matrices.
@@ -15,14 +13,14 @@ import CLAPACK
 /// system of equations A * X = B.
 @_silgen_name("dgesv_")
 public func dgesv_(
-    _ __n: UnsafeMutablePointer<__LAPACK_int>!,
-    _ __nrhs: UnsafeMutablePointer<__LAPACK_int>!,
-    _ __a: UnsafeMutablePointer<__LAPACK_doublereal>!,
-    _ __lda: UnsafeMutablePointer<__LAPACK_int>!,
-    _ __ipiv: UnsafeMutablePointer<__LAPACK_int>!,
-    _ __b: UnsafeMutablePointer<__LAPACK_doublereal>!,
-    _ __ldb: UnsafeMutablePointer<__LAPACK_int>!,
-    _ __info: UnsafeMutablePointer<__LAPACK_int>!
+    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __nrhs: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __ipiv: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __b: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __ldb: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __info: UnsafeMutablePointer<__CLPK_integer>!
 )
 
 /// DGESVD computes the singular value decomposition (SVD) of a real
@@ -43,18 +41,17 @@ public func dgesv_(
 public func dgesvd_(
     _ __jobu: UnsafeMutablePointer<CChar>!,
     _ __jobvt: UnsafeMutablePointer<CChar>!,
-    _ __m: UnsafeMutablePointer<__LAPACK_int>!,
-    _ __n: UnsafeMutablePointer<__LAPACK_int>!,
-    _ __a: UnsafeMutablePointer<__LAPACK_doublereal>!,
-    _ __lda: UnsafeMutablePointer<__LAPACK_int>!,
-    _ __s: UnsafeMutablePointer<__LAPACK_doublereal>!,
-    _ __u: UnsafeMutablePointer<__LAPACK_doublereal>!,
-    _ __ldu: UnsafeMutablePointer<__LAPACK_int>!,
-    _ __vt: UnsafeMutablePointer<__LAPACK_doublereal>!,
-    _ __ldvt: UnsafeMutablePointer<__LAPACK_int>!,
-    _ __work: UnsafeMutablePointer<__LAPACK_doublereal>!,
-    _ __lwork: UnsafeMutablePointer<__LAPACK_int>!,
-    _ __info: UnsafeMutablePointer<__LAPACK_int>!
+    _ __m: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __s: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __u: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __ldu: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __vt: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __ldvt: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __work: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __lwork: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __info: UnsafeMutablePointer<__CLPK_integer>!
 )
-#endif  // ACCELERATE_NEW_LAPACK
 #endif  // canImport(Accelerate)

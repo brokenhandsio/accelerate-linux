@@ -20,8 +20,3 @@ jobs:
         run: swift build
       - name: Test (CLPK)
         run: swift test
-      - name: Build (LAPACK)
-        run: swift build -Xswiftc -DACCELERATE_NEW_LAPACK
-      - name: Test (LAPACK)
-        run: swift test -Xswiftc -DACCELERATE_NEW_LAPACK
-
