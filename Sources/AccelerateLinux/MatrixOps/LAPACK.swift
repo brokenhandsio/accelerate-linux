@@ -137,4 +137,22 @@ public func dpotrf_(
     _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
 ) -> Int32
+
+/// Solves a triangular system of the form
+///   `A * X = B`  or  `A**T * X = B`,
+/// where A is a triangular matrix of order N, and B is an N-by-NRHS matrix.
+/// A check is made to verify that A is nonsingular.
+@_silgen_name("dtrtrs_")
+public func dtrtrs_(
+    _ __uplo: UnsafeMutablePointer<CChar>!,
+    _ __trans: UnsafeMutablePointer<CChar>!,
+    _ __diag: UnsafeMutablePointer<CChar>!,
+    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __nrhs: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __b: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __ldb: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __info: UnsafeMutablePointer<__CLPK_integer>!
+) -> Int32
 #endif  // canImport(Accelerate)

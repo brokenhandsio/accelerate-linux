@@ -294,6 +294,51 @@ struct LAPACKTests {
                 0.00, 0.00, 0.00, 0.53,
             ]
         )
+    }
 
+    // https://numericalalgorithmsgroup.github.io/LAPACK_Examples/examples/doc/dtrtrs_example.html
+    @Test("dtrtrs_")
+    func test_dtrtrs_() {
+        let N = 4
+        let NRHS = 2
+        let LDA = N
+
+        var n = __CLPK_integer(N)
+        var nrhs = __CLPK_integer(NRHS)
+        var lda = __CLPK_integer(LDA)
+        var ldb = __CLPK_integer(N)
+        var info = __CLPK_integer(0)
+
+        var a: [__CLPK_doublereal] = [
+            4.30, -3.96, 0.40, -0.27,
+            0.00, -4.87, 0.31, 0.07,
+            0.00, 0.00, -8.02, -5.95,
+            0.00, 0.00, 0.00, 0.12,
+        ]
+
+        var b: [__CLPK_doublereal] = [
+            -12.90, 16.75, -17.55, -11.04,
+            -21.50, 14.93, 6.33, 8.09,
+        ]
+
+        "L".withCString { uploPtr in
+            "N".withCString { transPtr in
+                "N".withCString { diagPtr in
+                    let mutableUploPtr = UnsafeMutablePointer(mutating: uploPtr)
+                    let mutableTransPtr = UnsafeMutablePointer(mutating: transPtr)
+                    let mutableDiagPtr = UnsafeMutablePointer(mutating: diagPtr)
+                    _ = dtrtrs_(mutableUploPtr, mutableTransPtr, mutableDiagPtr, &n, &nrhs, &a, &lda, &b, &ldb, &info)
+                }
+            }
+        }
+
+        #expect(
+            b.map {
+                ($0 * pow(10, 2)).rounded() / pow(10, 2)
+            } == [
+                -3.00, -1.00, 2.00, 1.00,
+                -5.00, 1.00, -1.00, 6.00,
+            ]
+        )
     }
 }
