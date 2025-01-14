@@ -22,7 +22,7 @@ import AccelerateLinux
 
 and then call through to normal Accelerate functions. 
 
-> ![NOTE]
+> [!NOTE]
 > To use this on linux you will need BLAS and LAPACK installed. On Ubuntu you can install these with:
 >```bash
 > apt-get install libblas-dev liblapack-dev
