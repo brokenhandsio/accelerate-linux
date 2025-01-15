@@ -53,6 +53,18 @@ public func vDSP_mmulD(
     _ __N: vDSP_Length,
     _ __P: vDSP_Length
 ) {
-
+    var a = __A
+    for i in 0..<__M {
+        var b = __B
+        for _ in 0..<__P {
+            var c = __C.advanced(by: Int(i) * __IC * Int(__N))
+            for _ in 0..<__N {
+                c.pointee += a.pointee * b.pointee
+                b = b.advanced(by: __IB)
+                c = c.advanced(by: __IC)
+            }
+            a = a.advanced(by: __IA)
+        }
+    }
 }
 #endif  // canImport(Accelerate)

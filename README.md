@@ -35,7 +35,7 @@ The package is structured as follows:
 - `Sources/AccelerateLinux/MatrixOps`: Contains matrix operations:
     - `BasicOps` - Basic matrix operations:
         - [x] `vDSP_mtransD` - Transpose a matrix
-        - [ ] `vDSP_mmulD` - Matrix multiplication
+        - [x] `vDSP_mmulD` - Matrix multiplication
     - `LAPACK` - LAPACK functions:
         - [x] `dgesv_` - Solve a system of linear equations
         - [x] `dgesvd_` - Singular Value Decomposition
