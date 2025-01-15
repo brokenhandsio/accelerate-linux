@@ -1,4 +1,5 @@
 import AccelerateLinux
+import FoundationEssentials
 import Testing
 
 @Suite("Vector Basic Ops Tests")
@@ -129,5 +130,45 @@ struct VectorBasicOpsTests {
 
         vvpow(&z, &y, &x, &n)
         #expect(z == [9.0, 16.0, 1000.0, 36.0])
+    }
+
+    // https://developer.apple.com/documentation/accelerate/1450639-vdsp_vclrd
+    @Test("vDSP_vclrD")
+    func vDSP_vclrDTest() {
+        let n = vDSP_Length(10)
+        let stride = vDSP_Stride(1)
+
+        var c = [Double](
+            repeating: .nan,
+            count: Int(n))
+
+        vDSP_vclrD(&c, stride, n)
+
+        #expect(c == [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+    }
+
+    // https://developer.apple.com/documentation/accelerate/1450171-vdsp_vfilld
+    @Test("vDSP_vfillD")
+    func vDSP_vfillDTest() {
+        let n = vDSP_Length(10)
+        let stride = vDSP_Stride(1)
+
+        var a = Double.pi
+
+        var c = [Double](
+            repeating: .nan,
+            count: Int(n))
+
+        vDSP_vfillD(&a, &c, stride, n)
+
+        #expect(
+            c.map {
+                ($0 * 100).rounded() / 100
+            } == [
+                3.14, 3.14, 3.14,
+                3.14, 3.14, 3.14,
+                3.14, 3.14, 3.14,
+                3.14,
+            ])
     }
 }

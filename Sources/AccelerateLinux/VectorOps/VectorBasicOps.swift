@@ -151,4 +151,32 @@ public func vvpow(
         i += 1
     }
 }
+
+/// Populates a double-precision vector with zeros.
+/// - Parameters:
+///   - __C: Double-precision real output vector.
+///   - __IC: Address stride for C.
+///   - __N: The number of elements to process.
+public func vDSP_vclrD(
+    _ __C: UnsafeMutablePointer<Double>,
+    _ __IC: vDSP_Stride,
+    _ __N: vDSP_Length
+) {
+    var zero: Double = 0
+    vDSP_vfillD(&zero, __C, __IC, __N)
+}
+
+/// Populates a double-precision vector with a specified scalar value.
+public func vDSP_vfillD(
+    _ __A: UnsafePointer<Double>,
+    _ __C: UnsafeMutablePointer<Double>,
+    _ __IC: vDSP_Stride,
+    _ __N: vDSP_Length
+) {
+    var i = 0
+    while i < __N {
+        __C[i * __IC] = __A.pointee
+        i += 1
+    }
+}
 #endif
