@@ -25,7 +25,7 @@ and then call through to normal Accelerate functions.
 > [!NOTE]
 > To use this on linux you will need BLAS and LAPACK installed. On Ubuntu you can install these with:
 >```bash
-> apt-get install libblas-dev liblapack-dev
+> apt-get install libopenblas-dev liblapacke-dev
 >```
 
 ## Structure 
@@ -43,9 +43,9 @@ The package is structured as follows:
         - [x] `dgetri_` - Inverse of a matrix
         - [x] `dgeev_` - Eigenvalues and eigenvectors
         - [x] `dpotrf_` - Cholesky decomposition
-        - [ ] `dtrtrs_` - Solve a triangular system of linear equations
+        - [x] `dtrtrs_` - Solve a triangular system of linear equations
     - `CBLAS` - BLAS functions:
-        - [ ] `cblas_dgemm` - Matrix multiplication
+        - [x] `cblas_dgemm` - Matrix multiplication
 - `Sources/AccelerateLinux/VectorOps`: Contains vector operations
     - `BasicOps` - Basic vector operations:
         - [x] `vDSP_maxvD` - Find the maximum value in a vector

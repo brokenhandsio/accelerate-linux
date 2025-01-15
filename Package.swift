@@ -16,18 +16,16 @@ let package = Package(
         ),
         .systemLibrary(
             name: "CBLAS",
-            pkgConfig: "blas",
+            pkgConfig: "openblas",
             providers: [
-                .aptItem(["libblas-dev"]),
-                .brewItem(["openblas"]),
+                .aptItem(["libopenblas-dev"])
             ]
         ),
         .systemLibrary(
             name: "CLAPACK",
-            pkgConfig: "lapack",
+            pkgConfig: "lapacke",
             providers: [
-                .aptItem(["liblapack-dev"]),
-                .brewItem(["openblas"]),
+                .aptItem(["liblapacke-dev"])
             ]
         ),
         .testTarget(

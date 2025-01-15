@@ -15,8 +15,8 @@ jobs:
       - name: Lint
         run: swift-format lint --recursive --strict --parallel .
       - name: Install BLAS & LAPACK
-        run: apt-get update && apt-get install -y libblas-dev liblapack-dev
-      - name: Build (CLPK)
+        run: apt-get update && apt-get install -y libopenblas-dev liblapacke-dev
+      - name: Build
         run: swift build
-      - name: Test (CLPK)
+      - name: Test
         run: swift test

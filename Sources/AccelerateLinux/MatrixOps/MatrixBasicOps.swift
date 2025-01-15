@@ -1,6 +1,7 @@
 #if canImport(Accelerate)
 @_exported import Accelerate
 #else
+import CBLAS
 
 /// Transposes a double-precision matrix.
 /// - Parameters:
@@ -28,5 +29,30 @@ public func vDSP_mtransD(
             __C = __C.advanced(by: Int(__N) * __IC)
         }
     }
+}
+
+/// Performs an out-of-place multiplication of two double-precision real matrices.
+/// - Parameters:
+///   - __A: The M x P left-hand side input matrix.
+///   - __IA: The distance between the elements in the left-hand side input matrix.
+///   - __B: The P x N right-hand side input matrix.
+///   - __IB: The distance between the elements in the right-hand side input matrix.
+///   - __C: The M x N output matrix.
+///   - __IC: The distance between the elements in the output matrix.
+///   - __M: The number of rows in matrices A and C.
+///   - __N: The number of columns in matrices B and C.
+///   - __P: The number of columns in matrix A and the number of rows in matrix B.
+public func vDSP_mmulD(
+    _ __A: UnsafePointer<Double>,
+    _ __IA: vDSP_Stride,
+    _ __B: UnsafePointer<Double>,
+    _ __IB: vDSP_Stride,
+    _ __C: UnsafeMutablePointer<Double>,
+    _ __IC: vDSP_Stride,
+    _ __M: vDSP_Length,
+    _ __N: vDSP_Length,
+    _ __P: vDSP_Length
+) {
+
 }
 #endif  // canImport(Accelerate)

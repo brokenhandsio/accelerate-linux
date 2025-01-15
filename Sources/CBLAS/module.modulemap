@@ -1,5 +1,4 @@
 module CBLAS {
     header "cblas.h"
-    link "blas"
-    export *
+    link "openblas"
 }
