@@ -220,4 +220,19 @@ public func vDSP_vnegD(
         i += 1
     }
 }
+
+/// Computes the squared value of each element in the supplied double-precision vector.
+public func vDSP_vsqD(
+    _ __A: UnsafePointer<Double>,
+    _ __IA: vDSP_Stride,
+    _ __C: UnsafeMutablePointer<Double>,
+    _ __IC: vDSP_Stride,
+    _ __N: vDSP_Length
+) {
+    var i = 0
+    while i < __N {
+        __C[i * __IC] = __A[i * __IC] * __A[i * __IC]
+        i += 1
+    }
+}
 #endif
