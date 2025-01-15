@@ -57,7 +57,7 @@ The package is structured as follows:
         - [x] `vDSP_vclrD` - Clear a vector
         - [x] `vDSP_vfillD` - Fill a vector with a value
         - [x] `vDSP_vabsD` - Absolute value of a vector
-        - [ ] `vDSP_vnegD` - Negate a vector
+        - [x] `vDSP_vnegD` - Negate a vector
         - [ ] `vDSP_vsqD` - Square a vector
         - [ ] `vDSP_dotprD` - Dot product of two vectors
         - [ ] `vDSP_vlimD` - Limit a vector to a range

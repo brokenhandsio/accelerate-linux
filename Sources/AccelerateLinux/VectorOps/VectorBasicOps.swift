@@ -199,4 +199,25 @@ public func vDSP_vabsD(
         i += 1
     }
 }
+
+/// Calculates the negative value of each element in the supplied double-precision vector using specified stride.
+/// - Parameters:
+///   - __A: The input vector A.
+///   - __IA: The distance between the elements in the input vector A.
+///   - __C: On output, the negative values of the elements in the input vector.
+///   - __IC: The distance between the elements in the output vector C.
+///   - __N: The number of elements that the function processes.
+public func vDSP_vnegD(
+    _ __A: UnsafePointer<Double>,
+    _ __IA: vDSP_Stride,
+    _ __C: UnsafeMutablePointer<Double>,
+    _ __IC: vDSP_Stride,
+    _ __N: vDSP_Length
+) {
+    var i = 0
+    while i < __N {
+        __C[i * __IC] = -__A[i * __IC]
+        i += 1
+    }
+}
 #endif
