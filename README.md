@@ -50,8 +50,8 @@ The package is structured as follows:
     - `BasicOps` - Basic vector operations:
         - [x] `vDSP_maxvD` - Find the maximum value in a vector
         - [x] `vDSP_minvD` - Find the minimum value in a vector
-        - [ ] `vDSP_vaddD` - Add two vectors
-        - [ ] `vDSP_vsubD` - Subtract two vectors
+        - [x] `vDSP_vaddD` - Add two vectors
+        - [x] `vDSP_vsubD` - Subtract two vectors
         - [ ] `vDSP_vmulD` - Multiply two vectors
         - [ ] `vvpow` - Raise a vector to a power
         - [ ] `vDSP_vclrD` - Clear a vector
