@@ -235,4 +235,29 @@ public func vDSP_vsqD(
         i += 1
     }
 }
+
+/// Calculates the dot product of two double-precision vectors.
+/// - Parameters:
+///   - __A: The input vector A.
+///   - __IA: The distance between the elements in the input vector A.
+///   - __B: The input vector B.
+///   - __IB: The distance between the elements in the input vector B.
+///   - __C: On output, the dot product of the two vectors.
+///   - __N: The number of elements to process.
+public func vDSP_dotprD(
+    _ __A: UnsafePointer<Double>,
+    _ __IA: vDSP_Stride,
+    _ __B: UnsafePointer<Double>,
+    _ __IB: vDSP_Stride,
+    _ __C: UnsafeMutablePointer<Double>,
+    _ __N: vDSP_Length
+) {
+    #warning("This could be implemented via BLAS (`cblas_ddot`) but we'd have to use OPENBLAS_USE64BITINT to make sure we don't overflow")
+    var i = 0
+    while i < __N {
+        __C.pointee += __A[i * Int(__IA)] * __B[i * Int(__IB)]
+        i += 1
+    }
+
+}
 #endif

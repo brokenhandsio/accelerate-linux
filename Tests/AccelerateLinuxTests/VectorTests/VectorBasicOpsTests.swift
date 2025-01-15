@@ -221,4 +221,23 @@ struct VectorBasicOpsTests {
 
         #expect(negativeValues == [1.0, 4.0, 9.0, 16.0, 25.0, 36.0, 49.0, 64.0])
     }
+
+    @Test("vDSP_vsqD")
+    func vDSP_dotprDTest() {
+        let stride = 1
+        let n = 3
+
+        let a: [Double] = [1.0, 2.0, 3.0]
+        let b: [Double] = [4.0, 5.0, 6.0]
+
+        var c = Double()
+
+        vDSP_dotprD(
+            a, stride,
+            b, stride,
+            &c,
+            vDSP_Length(n))
+
+        #expect(c == 32)
+    }
 }
