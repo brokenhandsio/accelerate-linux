@@ -171,4 +171,24 @@ struct VectorBasicOpsTests {
                 3.14,
             ])
     }
+
+    // https://developer.apple.com/documentation/accelerate/1449982-vdsp_vabsd
+    @Test("vDSP_vabsD")
+    func vDSP_vabsDTest() {
+        let stride = 1
+
+        let values: [Double] = [-1, 2, -3, 4, -5, 6, -7, 8]
+
+        let absoluteValues = [Double](unsafeUninitializedCapacity: values.count) { buffer, initializedCount in
+            vDSP_vabsD(
+                values, stride,
+                buffer.baseAddress!, stride,
+                vDSP_Length(values.count)
+            )
+
+            initializedCount = values.count
+        }
+
+        #expect(absoluteValues == [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0])
+    }
 }
