@@ -86,12 +86,9 @@ struct VectorBasicOpsTests {
             buffer, initializedCount in
 
             vDSP_vsubD(
-                b,
-                stride,
-                a,
-                stride,
-                buffer.baseAddress!,
-                stride,
+                b, stride,
+                a, stride,
+                buffer.baseAddress!, stride,
                 vDSP_Length(count)
             )
 
@@ -99,5 +96,38 @@ struct VectorBasicOpsTests {
         }
 
         #expect(c == [9.0, 18.0, 27.0, 36.0, 45.0])
+    }
+
+    // https://developer.apple.com/documentation/accelerate/1450138-vdsp_vmuld
+    @Test("vmulD")
+    func vDSP_vmulDTest() {
+        let stride = 1
+        let count = 5
+
+        let a: [Double] = [1, 2, 3, 4, 5]
+        let b: [Double] = [10, 20, 30, 40, 50]
+
+        let c = [Double](unsafeUninitializedCapacity: count) { buffer, initializedCount in
+            vDSP_vmulD(
+                a, stride,
+                b, stride,
+                buffer.baseAddress!, stride,
+                vDSP_Length(count)
+            )
+            initializedCount = count
+        }
+
+        #expect(c == [10.0, 40.0, 90.0, 160.0, 250.0])
+    }
+
+    @Test("vvpow")
+    func vvpowTest() {
+        var x: [Double] = [3, 2, 10, 6]
+        var y: [Double] = [2, 4, 3, 2]
+        var z = [Double](repeating: 0, count: x.count)
+        var n = Int32(x.count)
+
+        vvpow(&z, &y, &x, &n)
+        #expect(z == [9.0, 16.0, 1000.0, 36.0])
     }
 }

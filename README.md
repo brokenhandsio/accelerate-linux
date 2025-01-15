@@ -52,8 +52,8 @@ The package is structured as follows:
         - [x] `vDSP_minvD` - Find the minimum value in a vector
         - [x] `vDSP_vaddD` - Add two vectors
         - [x] `vDSP_vsubD` - Subtract two vectors
-        - [ ] `vDSP_vmulD` - Multiply two vectors
-        - [ ] `vvpow` - Raise a vector to a power
+        - [x] `vDSP_vmulD` - Multiply two vectors
+        - [x] `vvpow` - Raise a vector to a power
         - [ ] `vDSP_vclrD` - Clear a vector
         - [ ] `vDSP_vfillD` - Fill a vector with a value
         - [ ] `vDSP_vabsD` - Absolute value of a vector
