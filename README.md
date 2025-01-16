@@ -64,7 +64,7 @@ The package is structured as follows:
         - [x] `vDSP_vclipcD` - Clip a vector to a range
         - [x] `vDSP_vrsumD` - Recursive sum of a vector
         - [x] `vDSP_vsortD` - Sort a vector
-        - [ ] `vDSP_vrampD` - Ramp a vector
+        - [x] `vDSP_vrampD` - Ramp a vector
         - [ ] `vDSP.sum` - Sum of a vector
         - [ ] `vDSP.add` - Add two vectors
         - [ ] `vDSP.subtract` - Subtract two vectors

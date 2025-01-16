@@ -298,4 +298,28 @@ struct VectorBasicOpsTests {
 
         #expect(a == [-23.0, 3.0, 9.0, 15.0])
     }
+
+    @Test("vDSP_vrampD")
+    func vDSP_vrampDTest() {
+        let n = 8
+        let stride = 1
+
+        var initialValue: Double = 0
+        var increment: Double = 1
+
+        let ramp = [Double](unsafeUninitializedCapacity: n) {
+            buffer, initializedCount in
+
+            vDSP_vrampD(
+                &initialValue,
+                &increment,
+                buffer.baseAddress!,
+                stride,
+                vDSP_Length(n))
+
+            initializedCount = n
+        }
+
+        #expect(ramp == [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0])
+    }
 }

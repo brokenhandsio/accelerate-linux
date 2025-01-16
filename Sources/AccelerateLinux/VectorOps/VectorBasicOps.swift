@@ -382,6 +382,27 @@ public func vDSP_vsortD(
     quicksort(__C, __N, __Order, p: 0, r: Int(__N - 1))
 }
 
+/// Generates a double-precision vector with monotonically incrementing or decrementing values using an initial value and increment.
+/// - Parameters:
+///   - __A: The initial value of the ramp.
+///   - __B: The increment, or decrement if negative, between each generated element.
+///   - __C: The output vector.
+///   - __IC: The distance between the elements in the output vector.
+///   - __N: The number of elements that the function processes.
+public func vDSP_vrampD(
+    _ __A: UnsafePointer<Double>,
+    _ __B: UnsafePointer<Double>,
+    _ __C: UnsafeMutablePointer<Double>,
+    _ __IC: vDSP_Stride,
+    _ __N: vDSP_Length
+) {
+    var i = 0
+    while i < __N {
+        __C[i * __IC] = (__A.pointee + __B.pointee) * Double(i)
+        i += 1
+    }
+}
+
 private func quicksort(
     _ vec: UnsafeMutablePointer<Double>,
     _ len: vDSP_Length,
