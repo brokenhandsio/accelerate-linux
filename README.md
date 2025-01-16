@@ -69,7 +69,7 @@ The package is structured as follows:
         - [x] `vDSP.add`:
             - [x] `vDSP.add` - Add two vectors
             - [x] `vDSP.add` - Add a scalar to a vector
-        - [ ] `vDSP.subtract` - Subtract two vectors
+        - [x] `vDSP.subtract` - Subtract two vectors
         - [ ] `vDSP.multiply` - Multiply two vectors
     - `Statistical` - Statistical operations:
         - [ ] `vDSP.mean` - Mean of a vector

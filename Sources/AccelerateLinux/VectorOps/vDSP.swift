@@ -61,5 +61,28 @@ public enum vDSP {
             return sum
         }
     }
+
+    /// Returns the double-precision element-wise subtraction of two vectors.
+    /// - Parameters:
+    ///   - vectorA: The first input vector, A.
+    ///   - vectorB: The second input vector, B.
+    /// - Returns: The output vector, C.
+    public static func subtract<T, U>(
+        _ vectorA: U,
+        _ vectorB: T
+    ) -> [Double] where T: AccelerateBuffer, U: AccelerateBuffer, T.Element == Double, U.Element == Double {
+        .init(unsafeUninitializedCapacity: vectorA.count) { buffer, initializedCount in
+            vectorA.withUnsafeBufferPointer { aPtr in
+                vectorB.withUnsafeBufferPointer { bPtr in
+                    var i = 0
+                    while i < vectorA.count {
+                        buffer[i] = aPtr[i] - bPtr[i]
+                        i += 1
+                    }
+                    initializedCount = vectorA.count
+                }
+            }
+        }
+    }
 }
 #endif

@@ -34,4 +34,14 @@ struct vDSDNamespaceTests {
 
         #expect((sum * 100).rounded() / 100 == 0.15)
     }
+
+    @Test("vDSP.subtract vector - vector")
+    func vDSPsubVectorVector() {
+        let a: [Double] = [10, 20, 30, 40, 50]
+        let b: [Double] = [1, 2, 3, 4, 5]
+
+        let c = vDSP.subtract(a, b)
+
+        #expect(c == [9.0, 18.0, 27.0, 36.0, 45.0])
+    }
 }
