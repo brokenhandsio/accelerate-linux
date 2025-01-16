@@ -77,4 +77,4 @@ The package is structured as follows:
     - `Statistical` - Statistical operations:
         - [x] `vDSP.mean` - Mean of a vector
     - `Transforms`:
-        - [ ] `vDSP_vdpsp` - Convert a double vector to a single precision vector
+        - [x] `vDSP_vdpsp` - Convert a double vector to a single precision vector
