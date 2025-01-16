@@ -313,4 +313,40 @@ public func vDSP_vclipcD(
         i += 1
     }
 }
+
+/// Performs running sum integration over a double-precision vector.
+/// - Parameters:
+///   - __A: Double-precision real input vector.
+///   - __IA: Address stride for A.
+///   - __S: Points to double-precision real input scalar: weighting factor.
+///   - __C: Double-precision real output vector.
+///   - __IC: Stride for C
+///   - __N: The number of elements to process.
+/// Integrates vector A using a running sum from vector C.
+/// Vector A is weighted by scalar *S and added to the previous output point.
+/// The first element from vector A is not used in the sum.
+public func vDSP_vrsumD(
+    _ __A: UnsafePointer<Double>,
+    _ __IA: vDSP_Stride,
+    _ __S: UnsafePointer<Double>,
+    _ __C: UnsafeMutablePointer<Double>,
+    _ __IC: vDSP_Stride,
+    _ __N: vDSP_Length
+) {
+    @discardableResult
+    func aux(
+        _ __A: UnsafePointer<Double>,
+        _ __IA: vDSP_Stride,
+        _ __S: UnsafePointer<Double>,
+        _ __C: UnsafeMutablePointer<Double>,
+        _ __IC: vDSP_Stride,
+        _ __N: vDSP_Length
+    ) -> Double {
+        if __N == 0 { return 0 }
+        __C[Int(__N) * __IC] += (__S.pointee * __A[Int(__N) * __IA]) + aux(__A, __IA, __S, __C, __IC, __N - 1)
+        return __C[Int(__N) * __IC]
+    }
+
+    aux(__A, __IA, __S, __C, __IC, __N)
+}
 #endif

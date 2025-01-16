@@ -267,4 +267,22 @@ struct VectorBasicOpsTests {
         #expect(nLow == 2)
         #expect(nHigh == 1)
     }
+
+    @Test("vDSP_vrsum")
+    func vDSP_vrsumTest() {
+        let stride = 1
+        let n = 4
+
+        let a: [Double] = [1.0, 2.0, 3.0, 4.0]
+        var startValue: Double = 10.0
+        var c = [Double](repeating: 0.0, count: 4)
+
+        vDSP_vrsumD(
+            a, stride,
+            &startValue,
+            &c, stride,
+            vDSP_Length(n))
+
+        #expect(c == [0.0, 20.0, 50.0, 90.0])
+    }
 }
