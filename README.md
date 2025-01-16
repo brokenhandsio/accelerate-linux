@@ -75,6 +75,6 @@ The package is structured as follows:
             - [x] `vDSP.multiply` - Multiply a vector by a scalar
             - [x] `vDSP.multiply` - Multiply two (Float) vectors
     - `Statistical` - Statistical operations:
-        - [ ] `vDSP.mean` - Mean of a vector
+        - [x] `vDSP.mean` - Mean of a vector
     - `Transforms`:
         - [ ] `vDSP_vdpsp` - Convert a double vector to a single precision vector
