@@ -66,7 +66,9 @@ The package is structured as follows:
         - [x] `vDSP_vsortD` - Sort a vector
         - [x] `vDSP_vrampD` - Ramp a vector
         - [ ] `vDSP.sum` - Sum of a vector
-        - [ ] `vDSP.add` - Add two vectors
+        - [x] `vDSP.add`:
+            - [x] `vDSP.add` - Add two vectors
+            - [x] `vDSP.add` - Add a scalar to a vector
         - [ ] `vDSP.subtract` - Subtract two vectors
         - [ ] `vDSP.multiply` - Multiply two vectors
     - `Statistical` - Statistical operations:
