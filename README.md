@@ -65,7 +65,7 @@ The package is structured as follows:
         - [x] `vDSP_vrsumD` - Recursive sum of a vector
         - [x] `vDSP_vsortD` - Sort a vector
         - [x] `vDSP_vrampD` - Ramp a vector
-        - [ ] `vDSP.sum` - Sum of a vector
+        - [x] `vDSP.sum` - Sum of a vector
         - [x] `vDSP.add`:
             - [x] `vDSP.add` - Add two vectors
             - [x] `vDSP.add` - Add a scalar to a vector

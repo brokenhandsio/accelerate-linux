@@ -1,8 +1,8 @@
 import AccelerateLinux
 import Testing
 
-@Suite("vDSP+add Test")
-struct vDSPaddTests {
+@Suite("vDSP Namespace Test")
+struct vDSDNamespaceTests {
     @Test("vDSP.add scalar + vector")
     func vDSPaddScalarVector() {
         let a: [Double] = [1, 2, 3, 4, 5]
@@ -21,5 +21,17 @@ struct vDSPaddTests {
         let c = vDSP.add(a, b)
 
         #expect(c == [11.0, 22.0, 33.0, 44.0, 55.0])
+    }
+
+    @Test("vDSP.sum")
+    func vDSPsum() {
+        let a: [Double] = [
+            -1.5, 2.25, 3.6,
+            0.2, -0.1, -4.3,
+        ]
+
+        let sum = vDSP.sum(a)
+
+        #expect((sum * 100).rounded() / 100 == 0.15)
     }
 }
