@@ -59,8 +59,8 @@ The package is structured as follows:
         - [x] `vDSP_vabsD` - Absolute value of a vector
         - [x] `vDSP_vnegD` - Negate a vector
         - [x] `vDSP_vsqD` - Square a vector
-        - [ ] `vDSP_dotprD` - Dot product of two vectors
-        - [ ] `vDSP_vlimD` - Limit a vector to a range
+        - [x] `vDSP_dotprD` - Dot product of two vectors
+        - [x] `vDSP_vlimD` - Limit a vector to a range
         - [ ] `vDSP_vclipcD` - Clip a vector to a range
         - [ ] `vDSP_vrsumD` - Recursive sum of a vector
         - [ ] `vDSP_vsortD` - Sort a vector

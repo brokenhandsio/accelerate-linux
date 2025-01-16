@@ -258,6 +258,22 @@ public func vDSP_dotprD(
         __C.pointee += __A[i * Int(__IA)] * __B[i * Int(__IB)]
         i += 1
     }
+}
 
+/// Calculates the double-precision vector test limit using the specified stride.
+public func vDSP_vlimD(
+    _ __A: UnsafePointer<Double>,
+    _ __IA: vDSP_Stride,
+    _ __B: UnsafePointer<Double>,
+    _ __C: UnsafePointer<Double>,
+    _ __D: UnsafeMutablePointer<Double>,
+    _ __ID: vDSP_Stride,
+    _ __N: vDSP_Length
+) {
+    var i = 0
+    while i < __N {
+        __D[i * __ID] = __C.pointee * ((__B.pointee <= __A[i * __IA]) ? 1 : -1)
+        i += 1
+    }
 }
 #endif

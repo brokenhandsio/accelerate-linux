@@ -4,7 +4,6 @@ import Testing
 
 @Suite("Vector Basic Ops Tests")
 struct VectorBasicOpsTests {
-
     @Test("maxvD Simple")
     func vDSP_maxvDSimpleTest() {
         let stride = vDSP_Stride(1)
@@ -236,8 +235,30 @@ struct VectorBasicOpsTests {
             a, stride,
             b, stride,
             &c,
-            vDSP_Length(n))
+            vDSP_Length(n)
+        )
 
         #expect(c == 32)
+    }
+
+    @Test("vDSP_vlimD")
+    func vDSP_vlimDTest() {
+        let stride = 1
+        let n = 3
+
+        let a: [Double] = [-1.0, 2.0, 5.0]
+        var b = [Double](repeating: 0.0, count: 3)
+
+        var min = 0.0
+        var max = 4.0
+
+        vDSP_vlimD(
+            a, stride,
+            &min, &max,
+            &b, stride,
+            vDSP_Length(n)
+        )
+
+        #expect(b == [-4.0, 4.0, 4.0])
     }
 }
