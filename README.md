@@ -61,7 +61,7 @@ The package is structured as follows:
         - [x] `vDSP_vsqD` - Square a vector
         - [x] `vDSP_dotprD` - Dot product of two vectors
         - [x] `vDSP_vlimD` - Limit a vector to a range
-        - [ ] `vDSP_vclipcD` - Clip a vector to a range
+        - [c] `vDSP_vclipcD` - Clip a vector to a range
         - [ ] `vDSP_vrsumD` - Recursive sum of a vector
         - [ ] `vDSP_vsortD` - Sort a vector
         - [ ] `vDSP_vrampD` - Ramp a vector

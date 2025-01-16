@@ -276,4 +276,41 @@ public func vDSP_vlimD(
         i += 1
     }
 }
+
+/// Calculates and counts the elements of a double-precision vector clipped to the specified range.
+/// - Parameters:
+///   - __A: The input vector.
+///   - __IA: The stride for the input vector.
+///   - __B: A pointer to the scalar low-clipping threshold. If the low-clipping threshold is greater than the high-clipping threshold, the function calculates an undefined result.
+///   - __C: A pointer to the scalar high-clipping threshold. If the high-clipping threshold is less than the low-clipping threshold, the function calculates an undefined result.
+///   - __D: The output vector.
+///   - __ID: The stride for the output vector.
+///   - __N: The number of elements that the function clips to the specified range.
+///   - __NLow: On output, the number of elements clipped to the low-clipping threshold.
+///   - __NHigh: On output, the number of elements clipped to the high-clipping threshold.
+public func vDSP_vclipcD(
+    _ __A: UnsafePointer<Double>,
+    _ __IA: vDSP_Stride,
+    _ __B: UnsafePointer<Double>,
+    _ __C: UnsafePointer<Double>,
+    _ __D: UnsafeMutablePointer<Double>,
+    _ __ID: vDSP_Stride,
+    _ __N: vDSP_Length,
+    _ __NLow: UnsafeMutablePointer<vDSP_Length>,
+    _ __NHigh: UnsafeMutablePointer<vDSP_Length>
+) {
+    var i = 0
+    while i < __N {
+        if __A[i * __IA] < __B.pointee {
+            __D[i * __ID] = __B.pointee
+            __NLow.pointee += 1
+        } else if __A[i * __IA] > __C.pointee {
+            __D[i * __ID] = __C.pointee
+            __NHigh.pointee += 1
+        } else {
+            __D[i * __ID] = __A[i * __IA]
+        }
+        i += 1
+    }
+}
 #endif

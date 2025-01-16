@@ -244,21 +244,27 @@ struct VectorBasicOpsTests {
     @Test("vDSP_vlimD")
     func vDSP_vlimDTest() {
         let stride = 1
-        let n = 3
+        let n = 4
 
-        let a: [Double] = [-1.0, 2.0, 5.0]
-        var b = [Double](repeating: 0.0, count: 3)
+        let a: [Double] = [-2.0, 0.0, 3.0, 5.0]
+        let min = 1.0
+        let max = 4.0
+        var b = min  // Lower bound
+        var c = max  // Upper bound
+        var d = [Double](repeating: 0.0, count: 4)
+        var nLow = vDSP_Length(0)  // Count of values below min
+        var nHigh = vDSP_Length(0)  // Count of values above max
 
-        var min = 0.0
-        var max = 4.0
-
-        vDSP_vlimD(
+        vDSP_vclipcD(
             a, stride,
-            &min, &max,
-            &b, stride,
-            vDSP_Length(n)
+            &b, &c,
+            &d, stride,
+            vDSP_Length(n),
+            &nLow, &nHigh
         )
 
-        #expect(b == [-4.0, 4.0, 4.0])
+        #expect(d == [1.0, 1.0, 3.0, 4.0])
+        #expect(nLow == 2)
+        #expect(nHigh == 1)
     }
 }
