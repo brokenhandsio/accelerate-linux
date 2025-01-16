@@ -1,6 +1,7 @@
 #if canImport(Accelerate)
 @_exported import Accelerate
 #else
+import CLAPACK
 
 /// Calculates the double-precision maximum value of a vector.
 /// - Parameters:
@@ -348,5 +349,71 @@ public func vDSP_vrsumD(
     }
 
     aux(__A, __IA, __S, __C, __IC, __N)
+}
+
+/// Performs an in-place sort of a double-precision vector.
+/// - Parameters:
+///   - __C: The vector that the function sorts in-place.
+///   - __N: The number of elements in the vector.
+///   - __Order: A value that specifies the sort order. Pass 1 to specify ascending order, or -1 for descending order.
+#warning("If the array is bigger than Int.max, vDSP_vsortD will do nothing. Find a solution")
+public func vDSP_vsortD(
+    _ __C: UnsafeMutablePointer<Double>,
+    _ __N: vDSP_Length,
+    _ __Order: Int32
+) {
+    // If dealing with 32 bit use LAPACK
+    #warning("Update this when we switch to 64 bit compat")
+    if __N <= vDSP_Length(Int32.max) {
+        var n = Int32(__N)
+        var info = Int32(0)
+
+        return dlasrt_(
+            (__Order == 1) ? "I" : "D",
+            &n,
+            __C,
+            &info,
+            0
+        )
+    }
+
+    let length = Int(__N - 1)
+    guard length > 0 else { return }
+    quicksort(__C, __N, __Order, p: 0, r: Int(__N - 1))
+}
+
+private func quicksort(
+    _ vec: UnsafeMutablePointer<Double>,
+    _ len: vDSP_Length,
+    _ ord: Int32,
+    p: Int,
+    r: Int
+) {
+    func partition(
+        _ vec: UnsafeMutablePointer<Double>,
+        p: Int,
+        r: Int,
+        ord: Int32
+    ) -> Int {
+        let x = vec[r]
+        var i = p - 1
+        var j = p
+        while j < r {
+            if (ord == 1 && vec[j] < x) || (ord == -1 && vec[j] > x) {
+                i += 1
+                swap(&vec[Int(j)], &vec[Int(i)])
+            }
+            j += 1
+        }
+        i += 1
+        swap(&vec[Int(i)], &vec[Int(r)])
+        return i
+    }
+
+    if p < r {
+        let q = partition(vec, p: p, r: r, ord: ord)
+        quicksort(vec, len, ord, p: p, r: q - 1)
+        quicksort(vec, len, ord, p: q + 1, r: r)
+    }
 }
 #endif

@@ -285,4 +285,17 @@ struct VectorBasicOpsTests {
 
         #expect(c == [0.0, 20.0, 50.0, 90.0])
     }
+
+    @Test("vDSP_vsortD")
+    func vDSP_vsortDTest() {
+        var a: [Double] = [15.0, 3.0, 9.0, -23.0]
+
+        vDSP_vsortD(
+            &a,
+            4,
+            1
+        )
+
+        #expect(a == [-23.0, 3.0, 9.0, 15.0])
+    }
 }
