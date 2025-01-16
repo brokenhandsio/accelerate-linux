@@ -70,7 +70,10 @@ The package is structured as follows:
             - [x] `vDSP.add` - Add two vectors
             - [x] `vDSP.add` - Add a scalar to a vector
         - [x] `vDSP.subtract` - Subtract two vectors
-        - [ ] `vDSP.multiply` - Multiply two vectors
+        - [x] `vDSP.multiply`:
+            - [x] `vDSP.multiply` - Multiply two (Double) vectors
+            - [x] `vDSP.multiply` - Multiply a vector by a scalar
+            - [x] `vDSP.multiply` - Multiply two (Float) vectors
     - `Statistical` - Statistical operations:
         - [ ] `vDSP.mean` - Mean of a vector
     - `Transforms`:

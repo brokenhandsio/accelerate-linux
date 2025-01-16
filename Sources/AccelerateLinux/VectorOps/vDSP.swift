@@ -84,5 +84,72 @@ public enum vDSP {
             }
         }
     }
+
+    /// Returns the double-precision element-wise product of two vectors.
+    /// - Parameters:
+    ///   - vectorA: The first input vector, A.
+    ///   - vectorB: The second input vector, B.
+    /// - Returns: The output vector, C.
+    public static func multiply<T, U>(
+        _ vectorA: T,
+        _ vectorB: U
+    ) -> [Double] where T: AccelerateBuffer, U: AccelerateBuffer, T.Element == Double, U.Element == Double {
+        .init(unsafeUninitializedCapacity: vectorA.count) { buffer, initializedCount in
+            vectorA.withUnsafeBufferPointer { aPtr in
+                vectorB.withUnsafeBufferPointer { bPtr in
+                    var i = 0
+                    while i < vectorA.count {
+                        buffer[i] = aPtr[i] * bPtr[i]
+                        i += 1
+                    }
+                    initializedCount = vectorA.count
+                }
+            }
+        }
+    }
+
+    /// Returns the single-precision element-wise product of two vectors.
+    /// - Parameters:
+    ///   - vectorA: The first input vector, A.
+    ///   - vectorB: The second input vector, B.
+    /// - Returns: The output vector, C.
+    public static func multiply<T, U>(
+        _ vectorA: T,
+        _ vectorB: U
+    ) -> [Float] where T: AccelerateBuffer, U: AccelerateBuffer, T.Element == Float, U.Element == Float {
+        .init(unsafeUninitializedCapacity: vectorA.count) { buffer, initializedCount in
+            vectorA.withUnsafeBufferPointer { aPtr in
+                vectorB.withUnsafeBufferPointer { bPtr in
+                    var i = 0
+                    while i < vectorA.count {
+                        buffer[i] = aPtr[i] * bPtr[i]
+                        i += 1
+                    }
+                    initializedCount = vectorA.count
+                }
+            }
+        }
+    }
+
+    /// Returns the double-precision element-wise product of a vector and a scalar value.
+    /// - Parameters:
+    ///   - scalar: The input scalar value, B.
+    ///   - vector: The input vector, A.
+    /// - Returns: The output vector, C.
+    public static func multiply<U>(
+        _ scalar: Double,
+        _ vector: U
+    ) -> [Double] where U: AccelerateBuffer, U.Element == Double {
+        .init(unsafeUninitializedCapacity: vector.count) { buffer, initializedCount in
+            vector.withUnsafeBufferPointer { vPtr in
+                var i = 0
+                while i < vector.count {
+                    buffer[i] = vPtr[i] * scalar
+                    i += 1
+                }
+                initializedCount = vector.count
+            }
+        }
+    }
 }
 #endif
