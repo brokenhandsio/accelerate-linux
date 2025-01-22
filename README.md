@@ -5,7 +5,7 @@ This package is a collection of functions from Apple's Accelerate framework made
 ## Installation
 
 ```swift
-.package(url: "git@github.com:brokenhandsio/accelerate-linux.git", from: "main")
+.package(url: "https://github.com/brokenhandsio/accelerate-linux.git", branch: "main"),
 ```
 
 ```swift
