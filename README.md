@@ -85,4 +85,4 @@ The package is structured as follows:
         - [x] `vDSP.mean` - Mean of a vector
     - `Transforms`:
         - [x] `vDSP_vdpsp` - Convert a double vector to a single precision vector
-        - [ ] `vDSP_vspdp` - Convert a single precision vector to a double precision vector
+        - [x] `vDSP_vspdp` - Convert a single precision vector to a double precision vector
