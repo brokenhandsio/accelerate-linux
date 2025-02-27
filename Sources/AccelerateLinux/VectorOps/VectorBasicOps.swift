@@ -482,6 +482,29 @@ public func vDSP_vdivD(
     }
 }
 
+/// Calculates the double-precision element-wise division of a vector and a scalar value, using the specified stride.
+/// - Parameters:
+///   - __A: The input vector, A.
+///   - __IA: The distance between the elements in the input vector.
+///   - __B: The scalar value, B.
+///   - __C: The output vector, C.
+///   - __IC: The distance between the elements in the output vector.
+///   - __N: The number of elements that the function processes.
+public func vDSP_vsdivD(
+    _ __A: UnsafePointer<Double>,
+    _ __IA: vDSP_Stride,
+    _ __B: UnsafePointer<Double>,
+    _ __C: UnsafeMutablePointer<Double>,
+    _ __IC: vDSP_Stride,
+    _ __N: vDSP_Length
+) {
+    var i = 0
+    while i < __N {
+        __C[i * __IC] = __A[i * __IA] / __B.pointee
+        i += 1
+    }
+}
+
 /// Calculates the sine of each element in an array of double-precision values.
 /// - Parameters:
 ///   - y: The output array, y.

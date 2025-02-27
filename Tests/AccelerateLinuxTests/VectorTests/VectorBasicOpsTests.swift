@@ -396,6 +396,29 @@ struct VectorBasicOpsTests {
         #expect(c == [10.0, 10.0, 10.0, 10.0, 10.0])
     }
 
+    @Test("vDSP_vsdivD")
+    func vDSP_vsdivDTest() {
+        let stride = 1
+        let count = 5
+
+        let a: [Double] = [1, 2, 3, 4, 5]
+        let b: Double = 10
+
+        let c = [Double](unsafeUninitializedCapacity: count) {
+            buffer, initializedCount in
+
+            vDSP_vsdivD(
+                a, stride,
+                [b],
+                buffer.baseAddress!, stride,
+                vDSP_Length(count))
+
+            initializedCount = count
+        }
+
+        #expect(c == [0.1, 0.2, 0.3, 0.4, 0.5])
+    }
+
     @Test("vvsin")
     func vvsinTest() {
         let pi = Double.pi

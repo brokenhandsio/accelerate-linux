@@ -56,6 +56,7 @@ The package is structured as follows:
         - [x] `vDSP_vminD` - Element-wise minimum of two vectors
         - [x] `vDSP_vmaxD` - Element-wise maximum of two vectors
         - [x] `vDSP_vdivD` - Divide two vectors
+        - [x] `vDSP_vsdivD` - Divide a vector by a scalar
         - [x] `vvpow` - Raise a vector to a power
         - [x] `vDSP_vclrD` - Clear a vector
         - [x] `vDSP_vfillD` - Fill a vector with a value
