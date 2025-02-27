@@ -402,6 +402,61 @@ public func vDSP_vrampD(
         i += 1
     }
 }
+/// Calculates the double-precision minimum of the corresponding values of two vectors using specified strides.
+/// - Parameters:
+///   - __A: Double-precision real input vector.
+///   - __IA: Stride for A.
+///   - __B: Double-precision real input vector.
+///   - __IB: Stride for B.
+///   - __C: Double-precision real output vector.
+///   - __IC: Stride for C.
+///   - __N: The number of elements to process.
+/// This function compares the first N elements of A with corresponding elements of B,
+/// leaving the lesser (or equal) values as corresponding elements of C:
+/// ```
+/// for (n = 0; n < N; ++n)
+///    C[n] = A[n] <= B[n] ? A[n] : B[n];
+/// ```
+public func vDSP_vminD(
+    _ __A: UnsafePointer<Double>,
+    _ __IA: vDSP_Stride,
+    _ __B: UnsafePointer<Double>,
+    _ __IB: vDSP_Stride,
+    _ __C: UnsafeMutablePointer<Double>,
+    _ __IC: vDSP_Stride,
+    _ __N: vDSP_Length
+) {
+    var i = 0
+    while i < __N {
+        __C[i * __IC] = __A[i * __IA] <= __B[i * __IB] ? __A[i * __IA] : __B[i * __IB]
+        i += 1
+    }
+}
+
+/// Calculates the double-precision maximum of the corresponding values of two vectors using specified strides.
+/// - Parameters:
+///   - __A: Double-precision real input vector.
+///   - __IA: Stride for A.
+///   - __B: Double-precision real input vector.
+///   - __IB: Stride for B.
+///   - __C: Double-precision real output vector.
+///   - __IC: Stride for C.
+///   - __N: The number of elements to process.
+public func vDSP_vmaxD(
+    _ __A: UnsafePointer<Double>,
+    _ __IA: vDSP_Stride,
+    _ __B: UnsafePointer<Double>,
+    _ __IB: vDSP_Stride,
+    _ __C: UnsafeMutablePointer<Double>,
+    _ __IC: vDSP_Stride,
+    _ __N: vDSP_Length
+) {
+    var i = 0
+    while i < __N {
+        __C[i * __IC] = __A[i * __IA] >= __B[i * __IB] ? __A[i * __IA] : __B[i * __IB]
+        i += 1
+    }
+}
 
 private func quicksort(
     _ vec: UnsafeMutablePointer<Double>,

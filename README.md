@@ -53,6 +53,9 @@ The package is structured as follows:
         - [x] `vDSP_vaddD` - Add two vectors
         - [x] `vDSP_vsubD` - Subtract two vectors
         - [x] `vDSP_vmulD` - Multiply two vectors
+        - [x] `vDSP_vminD` - Element-wise minimum of two vectors
+        - [x] `vDSP_vmaxD` - Element-wise maximum of two vectors
+        - [x] `vDSP_vdivD` - Divide two vectors
         - [x] `vvpow` - Raise a vector to a power
         - [x] `vDSP_vclrD` - Clear a vector
         - [x] `vDSP_vfillD` - Fill a vector with a value
@@ -74,7 +77,12 @@ The package is structured as follows:
             - [x] `vDSP.multiply` - Multiply two (Double) vectors
             - [x] `vDSP.multiply` - Multiply a vector by a scalar
             - [x] `vDSP.multiply` - Multiply two (Float) vectors
+        - [ ] `vvsin` - Sine of each element in a vector
+        - [ ] `vvsqrt` - Square root of each element in a vector
+        - [ ] `vvexp` - Exponential of each element in a vector
+        - [ ] `vvlog` - Logarithm of each element in a vector
     - `Statistical` - Statistical operations:
         - [x] `vDSP.mean` - Mean of a vector
     - `Transforms`:
         - [x] `vDSP_vdpsp` - Convert a double vector to a single precision vector
+        - [ ] `vDSP_vspdp` - Convert a single precision vector to a double precision vector

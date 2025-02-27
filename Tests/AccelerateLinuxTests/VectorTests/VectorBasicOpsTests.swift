@@ -322,4 +322,42 @@ struct VectorBasicOpsTests {
 
         #expect(ramp == [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0])
     }
+
+    @Test("vDSP_vminD")
+    func vDSP_vminDTest() {
+        let stride = 1
+        let n = 4
+
+        let a: [Double] = [1.0, 2.0, 3.0, 4.0]
+        let b: [Double] = [4.0, 3.0, 2.0, 1.0]
+        var c: [Double] = [0.0, 0.0, 0.0, 0.0]
+
+        vDSP_vminD(
+            a, stride,
+            b, stride,
+            &c, stride,
+            vDSP_Length(n)
+        )
+
+        #expect(c == [1.0, 2.0, 2.0, 1.0])
+    }
+
+    @Test("vDSP_vmaxD")
+    func vDSP_vmaxDTest() {
+        let stride = 1
+        let n = 4
+
+        let a: [Double] = [1.0, 2.0, 3.0, 4.0]
+        let b: [Double] = [4.0, 3.0, 2.0, 1.0]
+        var c: [Double] = [0.0, 0.0, 0.0, 0.0]
+
+        vDSP_vmaxD(
+            a, stride,
+            b, stride,
+            &c, stride,
+            vDSP_Length(n)
+        )
+
+        #expect(c == [4.0, 3.0, 3.0, 4.0])
+    }
 }
