@@ -395,4 +395,48 @@ struct VectorBasicOpsTests {
 
         #expect(c == [10.0, 10.0, 10.0, 10.0, 10.0])
     }
+
+    @Test("vvsin")
+    func vvsinTest() {
+        let pi = Double.pi
+        var x: [Double] = [-pi * 0.5, 0, pi * 0.5]
+        var y = [Double](repeating: 0, count: x.count)
+        var n = Int32(x.count)
+        vvsin(&y, &x, &n)
+
+        #expect(y == [-1.0, 0.0, 1.0])
+    }
+
+    @Test("vvsqrt")
+    func vvsqrtTest() {
+        var x: [Double] = [100, 10000, 64, 144]
+        var y = [Double](repeating: 0, count: x.count)
+        var n = Int32(x.count)
+
+        vvsqrt(&y, &x, &n)
+
+        #expect(y == [10.0, 100.0, 8.0, 12.0])
+    }
+
+    @Test("vvexp")
+    func vvexpTest() {
+        var x: [Double] = [0, 1, 2, 3]
+        var y = [Double](repeating: 0, count: x.count)
+        var n = Int32(x.count)
+
+        vvexp(&y, &x, &n)
+
+        #expect(y == [1.0, 2.718281828459045, 7.38905609893065, 20.085536923187668])
+    }
+
+    @Test("vvlog")
+    func vvlogTest() {
+        var x: [Double] = [1, 2.718281828459045, 7.38905609893065, 20.085536923187668]
+        var y = [Double](repeating: 0, count: x.count)
+        var n = Int32(x.count)
+
+        vvlog(&y, &x, &n)
+
+        #expect(y == [0.0, 1.0, 2.0, 3.0])
+    }
 }

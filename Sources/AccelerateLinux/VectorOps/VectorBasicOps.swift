@@ -2,6 +2,7 @@
 @_exported import Accelerate
 #else
 import CLAPACK
+import Glibc
 
 /// Calculates the double-precision maximum value of a vector.
 /// - Parameters:
@@ -477,6 +478,77 @@ public func vDSP_vdivD(
     var i = 0
     while i < __N {
         __C[i * __IC] = __A[i * __IA] / __B[i * __IB]
+        i += 1
+    }
+}
+
+/// Calculates the sine of each element in an array of double-precision values.
+/// - Parameters:
+///   - y: The output array, y.
+///   - x: The input array, x.
+///   - n: The number of elements in the arrays.
+///
+/// If x is +/-0, the result preserves the signed zero.
+/// If x is +/-inf, the result is NaN.
+public func vvsin(
+    _ y: UnsafeMutablePointer<Double>,
+    _ x: UnsafePointer<Double>,
+    _ n: UnsafePointer<Int32>
+) {
+    var i = 0
+    while i < n.pointee {
+        y[i] = sin(x[i])
+        i += 1
+    }
+}
+
+/// Calculates the square root of each element in an array of double-precision values.
+/// - Parameters:
+///   - y: The output array, y.
+///   - x: The input array, x.
+///   - n: The number of elements in the arrays.
+public func vvsqrt(
+    _ y: UnsafeMutablePointer<Double>,
+    _ x: UnsafePointer<Double>,
+    _ n: UnsafePointer<Int32>
+) {
+    var i = 0
+    while i < n.pointee {
+        y[i] = sqrt(x[i])
+        i += 1
+    }
+}
+
+/// Calculates e raised to the power of each element in an array of double-precision values.
+/// - Parameters:
+///   - y: The output array, y.
+///   - x: The input array, x.
+///   - n: The number of elements in the arrays.
+public func vvexp(
+    _ y: UnsafeMutablePointer<Double>,
+    _ x: UnsafePointer<Double>,
+    _ n: UnsafePointer<Int32>
+) {
+    var i = 0
+    while i < n.pointee {
+        y[i] = exp(x[i])
+        i += 1
+    }
+}
+
+/// Calculates the natural logarithm of each element in an array of double-precision values.
+/// - Parameters:
+///   - y: The output array, y.
+///   - x: The input array, x.
+///   - n: The number of elements in the arrays.
+public func vvlog(
+    _ y: UnsafeMutablePointer<Double>,
+    _ x: UnsafePointer<Double>,
+    _ n: UnsafePointer<Int32>
+) {
+    var i = 0
+    while i < n.pointee {
+        y[i] = log(x[i])
         i += 1
     }
 }

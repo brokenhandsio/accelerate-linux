@@ -77,10 +77,10 @@ The package is structured as follows:
             - [x] `vDSP.multiply` - Multiply two (Double) vectors
             - [x] `vDSP.multiply` - Multiply a vector by a scalar
             - [x] `vDSP.multiply` - Multiply two (Float) vectors
-        - [ ] `vvsin` - Sine of each element in a vector
-        - [ ] `vvsqrt` - Square root of each element in a vector
-        - [ ] `vvexp` - Exponential of each element in a vector
-        - [ ] `vvlog` - Logarithm of each element in a vector
+        - [x] `vvsin` - Sine of each element in a vector
+        - [x] `vvsqrt` - Square root of each element in a vector
+        - [x] `vvexp` - Exponential of each element in a vector
+        - [x] `vvlog` - Logarithm of each element in a vector
     - `Statistical` - Statistical operations:
         - [x] `vDSP.mean` - Mean of a vector
     - `Transforms`:
