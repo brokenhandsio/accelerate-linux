@@ -334,21 +334,19 @@ public func vDSP_vrsumD(
     _ __IC: vDSP_Stride,
     _ __N: vDSP_Length
 ) {
-    @discardableResult
-    func aux(
-        _ __A: UnsafePointer<Double>,
-        _ __IA: vDSP_Stride,
-        _ __S: UnsafePointer<Double>,
-        _ __C: UnsafeMutablePointer<Double>,
-        _ __IC: vDSP_Stride,
-        _ __N: vDSP_Length
-    ) -> Double {
-        if __N == 0 { return 0 }
-        __C[Int(__N) * __IC] += (__S.pointee * __A[Int(__N) * __IA]) + aux(__A, __IA, __S, __C, __IC, __N - 1)
-        return __C[Int(__N) * __IC]
-    }
+    if __N <= 0 { return }
 
-    aux(__A, __IA, __S, __C, __IC, __N)
+    let s = __S.pointee
+    var sum = 0.0
+    __C[0] = 0.0
+
+    for i in 1..<__N {
+        let aIdx = Int(i) * __IA
+        let cIdx = Int(i) * __IC
+
+        sum += __A[aIdx] * s
+        __C[cIdx] = sum
+    }
 }
 
 /// Performs an in-place sort of a double-precision vector.
@@ -454,6 +452,31 @@ public func vDSP_vmaxD(
     var i = 0
     while i < __N {
         __C[i * __IC] = __A[i * __IA] >= __B[i * __IB] ? __A[i * __IA] : __B[i * __IB]
+        i += 1
+    }
+}
+
+/// Calculates the double-precision element-wise division of two vectors, using the specified stride.
+/// - Parameters:
+///   - __B: The first input vector, B.
+///   - __IB: The distance between the elements in the first input vector.
+///   - __A: The second input vector, A.
+///   - __IA: The distance between the elements in the second input vector.
+///   - __C: The output vector, C.
+///   - __IC: The distance between the elements in the output vector.
+///   - __N: The number of elements that the function processes.
+public func vDSP_vdivD(
+    _ __B: UnsafePointer<Double>,
+    _ __IB: vDSP_Stride,
+    _ __A: UnsafePointer<Double>,
+    _ __IA: vDSP_Stride,
+    _ __C: UnsafeMutablePointer<Double>,
+    _ __IC: vDSP_Stride,
+    _ __N: vDSP_Length
+) {
+    var i = 0
+    while i < __N {
+        __C[i * __IC] = __A[i * __IA] / __B[i * __IB]
         i += 1
     }
 }

@@ -154,11 +154,10 @@ struct VectorBasicOpsTests {
 
         var a = Double.pi
 
-        var c = [Double](
-            repeating: .nan,
-            count: Int(n))
-
-        vDSP_vfillD(&a, &c, stride, n)
+        let c = [Double](unsafeUninitializedCapacity: Int(n)) { buffer, initializedCount in
+            vDSP_vfillD(&a, buffer.baseAddress!, stride, n)
+            initializedCount = Int(n)
+        }
 
         #expect(
             c.map {
@@ -268,20 +267,23 @@ struct VectorBasicOpsTests {
         #expect(nHigh == 1)
     }
 
-    @Test("vDSP_vrsum")
-    func vDSP_vrsumTest() {
+    @Test("vDSP_vrsumD")
+    func vDSP_vrsumDTest() {
         let stride = 1
         let n = 4
 
         let a: [Double] = [1.0, 2.0, 3.0, 4.0]
         var startValue: Double = 10.0
-        var c = [Double](repeating: 0.0, count: 4)
 
-        vDSP_vrsumD(
-            a, stride,
-            &startValue,
-            &c, stride,
-            vDSP_Length(n))
+        let c = [Double](unsafeUninitializedCapacity: n) { buffer, initializedCount in
+            vDSP_vrsumD(
+                a, stride,
+                &startValue,
+                buffer.baseAddress!, stride,
+                vDSP_Length(n)
+            )
+            initializedCount = n
+        }
 
         #expect(c == [0.0, 20.0, 50.0, 90.0])
     }
@@ -330,14 +332,19 @@ struct VectorBasicOpsTests {
 
         let a: [Double] = [1.0, 2.0, 3.0, 4.0]
         let b: [Double] = [4.0, 3.0, 2.0, 1.0]
-        var c: [Double] = [0.0, 0.0, 0.0, 0.0]
 
-        vDSP_vminD(
-            a, stride,
-            b, stride,
-            &c, stride,
-            vDSP_Length(n)
-        )
+        let c = [Double](unsafeUninitializedCapacity: n) {
+            buffer, initializedCount in
+
+            vDSP_vminD(
+                a, stride,
+                b, stride,
+                buffer.baseAddress!, stride,
+                vDSP_Length(n)
+            )
+
+            initializedCount = n
+        }
 
         #expect(c == [1.0, 2.0, 2.0, 1.0])
     }
@@ -349,15 +356,43 @@ struct VectorBasicOpsTests {
 
         let a: [Double] = [1.0, 2.0, 3.0, 4.0]
         let b: [Double] = [4.0, 3.0, 2.0, 1.0]
-        var c: [Double] = [0.0, 0.0, 0.0, 0.0]
 
-        vDSP_vmaxD(
-            a, stride,
-            b, stride,
-            &c, stride,
-            vDSP_Length(n)
-        )
+        let c = [Double](unsafeUninitializedCapacity: n) {
+            buffer, initializedCount in
+
+            vDSP_vmaxD(
+                a, stride,
+                b, stride,
+                buffer.baseAddress!, stride,
+                vDSP_Length(n)
+            )
+
+            initializedCount = n
+        }
 
         #expect(c == [4.0, 3.0, 3.0, 4.0])
+    }
+
+    @Test("vDSP_vdivD")
+    func vDSP_vdivDTest() {
+        let stride = 1
+        let count = 5
+
+        let b: [Double] = [10, 20, 30, 40, 50]
+        let a: [Double] = [1, 2, 3, 4, 5]
+
+        let c = [Double](unsafeUninitializedCapacity: count) {
+            buffer, initializedCount in
+
+            vDSP_vdivD(
+                a, stride,
+                b, stride,
+                buffer.baseAddress!, stride,
+                vDSP_Length(count))
+
+            initializedCount = count
+        }
+
+        #expect(c == [10.0, 10.0, 10.0, 10.0, 10.0])
     }
 }
