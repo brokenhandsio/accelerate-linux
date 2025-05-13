@@ -9,6 +9,8 @@
 ///   - __C: The output vector.
 ///   - __IC: The distance between the elements in the output vector.
 ///   - __N: The number of elements that the function processes.
+@inlinable
+@inline(__always)
 public func vDSP_vdpsp(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
@@ -30,6 +32,8 @@ public func vDSP_vdpsp(
 ///   - __C: The output vector.
 ///   - __IC: The distance between the elements in the output vector.
 ///   - __N: The number of elements that the function processes.
+@inlinable
+@inline(__always)
 public func vDSP_vspdp(
     _ __A: UnsafePointer<Float>,
     _ __IA: vDSP_Stride,
