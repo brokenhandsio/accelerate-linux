@@ -9,7 +9,6 @@ public enum vDSP {
     ///   - vector: The input vector, A.
     /// - Returns: The output vector, C.
     @inlinable
-    @inline(__always)
     public static func add<U>(
         _ scalar: Double,
         _ vector: U
@@ -32,7 +31,6 @@ public enum vDSP {
     ///   - vectorB: The second input vector, B.
     /// - Returns: The output vector, C.
     @inlinable
-    @inline(__always)
     public static func add<T, U>(
         _ vectorA: T,
         _ vectorB: U
@@ -55,7 +53,6 @@ public enum vDSP {
     /// Returns the double-precision vector sum.
     /// - Parameter vector: The vector to sum.
     @inlinable
-    @inline(__always)
     public static func sum<U>(_ vector: U) -> Double where U: AccelerateBuffer, U.Element == Double {
         vector.withUnsafeBufferPointer { ptr in
             var sum: Double = 0
@@ -74,7 +71,6 @@ public enum vDSP {
     ///   - vectorB: The second input vector, B.
     /// - Returns: The output vector, C.
     @inlinable
-    @inline(__always)
     public static func subtract<T, U>(
         _ vectorA: U,
         _ vectorB: T
@@ -99,7 +95,6 @@ public enum vDSP {
     ///   - vectorB: The second input vector, B.
     /// - Returns: The output vector, C.
     @inlinable
-    @inline(__always)
     public static func multiply<T, U>(
         _ vectorA: T,
         _ vectorB: U
@@ -124,7 +119,6 @@ public enum vDSP {
     ///   - vectorB: The second input vector, B.
     /// - Returns: The output vector, C.
     @inlinable
-    @inline(__always)
     public static func multiply<T, U>(
         _ vectorA: T,
         _ vectorB: U
@@ -149,7 +143,6 @@ public enum vDSP {
     ///   - vector: The input vector, A.
     /// - Returns: The output vector, C.
     @inlinable
-    @inline(__always)
     public static func multiply<U>(
         _ scalar: Double,
         _ vector: U
