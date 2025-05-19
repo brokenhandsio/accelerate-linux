@@ -71,7 +71,7 @@ public enum vDSP {
             return sum
         }
 
-        vector.withUnsafeBufferPointer { buffer in
+        return vector.withUnsafeBufferPointer { buffer in
             guard let baseAddress = buffer.baseAddress else { return 0.0 }
 
             let count = buffer.count
