@@ -57,14 +57,47 @@ public enum vDSP {
     @inlinable
     @inline(__always)
     public static func sum<U>(_ vector: U) -> Double where U: AccelerateBuffer, U.Element == Double {
-        vector.withUnsafeBufferPointer { ptr in
-            var sum: Double = 0
-            var i = ptr.startIndex
-            while i < ptr.endIndex {
-                sum += ptr[i]
-                i += 1
+        if vector.count == 0 { return 0.0 }
+        if vector.count <= 8 {
+            var sum: Double = 0.0
+            vector.withUnsafeBufferPointer { buffer in
+                for i in buffer.indices {
+                    sum += buffer[i]
+                }
             }
             return sum
+        }
+        vector.withUnsafeBufferPointer { buffer in
+            guard let baseAddress = buffer.baseAddress else { return 0.0 }
+
+            let count = buffer.count
+            var sum1: Double = 0.0
+            var sum2: Double = 0.0
+            var sum3: Double = 0.0
+            var sum4: Double = 0.0
+            var sum5: Double = 0.0
+            var sum6: Double = 0.0
+            var sum7: Double = 0.0
+            var sum8: Double = 0.0
+
+            let vectorCount = count - (count % 8)
+            for i in stride(from: 0, to: vectorCount, by: 8) {
+                sum1 += baseAddress[i]
+                sum2 += baseAddress[i + 1]
+                sum3 += baseAddress[i + 2]
+                sum4 += baseAddress[i + 3]
+                sum5 += baseAddress[i + 4]
+                sum6 += baseAddress[i + 5]
+                sum7 += baseAddress[i + 6]
+                sum8 += baseAddress[i + 7]
+            }
+
+            var remainingSum: Double = 0.0
+            for i in vectorCount..<count {
+                remainingSum += baseAddress[i]
+            }
+
+            return sum1 + sum2 + sum3 + sum4 + sum5 + sum6 + sum7 + sum8 + remainingSum
         }
     }
 
