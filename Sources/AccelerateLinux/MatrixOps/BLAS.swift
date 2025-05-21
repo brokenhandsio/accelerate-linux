@@ -26,7 +26,8 @@ import CBLAS
 /// or
 ///     C←αBA + βC
 /// with optional use of transposed forms of A, B, or both.
-@_silgen_name("cblas_dgemm")
+@inlinable
+@_extern(c, "cblas_dgemm")
 public func cblas_dgemm(
     _ __Order: CBLAS_ORDER,
     _ __TransA: CBLAS_TRANSPOSE,

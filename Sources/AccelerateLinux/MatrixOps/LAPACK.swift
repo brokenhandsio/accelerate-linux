@@ -12,6 +12,7 @@ import CLAPACK
 /// where P is a permutation matrix, L is unit lower triangular, and U is
 /// upper triangular.  The factored form of A is then used to solve the
 /// system of equations A * X = B.
+@inlinable
 @_silgen_name("dgesv_")
 public func dgesv_(
     _ __n: UnsafeMutablePointer<__CLPK_integer>!,
@@ -38,6 +39,7 @@ public func dgesv_(
 /// U and V are the left and right singular vectors of A.
 ///
 /// Note: that the routine returns V**T, not V.
+@inlinable
 @_silgen_name("dgesvd_")
 public func dgesvd_(
     _ __jobu: UnsafeMutablePointer<CChar>!,
@@ -66,6 +68,7 @@ public func dgesvd_(
 /// triangular (upper trapezoidal if m < n).
 ///
 /// This is the right-looking Level 3 BLAS version of the algorithm.
+@inlinable
 @_silgen_name("dgetrf_")
 public func dgetrf_(
     _ __m: UnsafeMutablePointer<__CLPK_integer>!,
@@ -81,6 +84,7 @@ public func dgetrf_(
 ///
 /// This method inverts U and then computes `inv(A)` by solving the system
 /// `inv(A)*L = inv(U) for inv(A)`.
+@inlinable
 @_silgen_name("dgetri_")
 public func dgetri_(
     _ __n: UnsafeMutablePointer<__CLPK_integer>!,
@@ -104,6 +108,7 @@ public func dgetri_(
 ///
 /// The computed eigenvectors are normalized to have Euclidean norm
 /// equal to 1 and largest component real.
+@inlinable
 @_silgen_name("dgeev_")
 public func dgeev_(
     _ __jobvl: UnsafeMutablePointer<CChar>!,
@@ -130,6 +135,7 @@ public func dgeev_(
 /// where U is an upper triangular matrix and L is lower triangular.
 ///
 /// This is the block version of the algorithm, calling Level 3 BLAS.
+@inlinable
 @_silgen_name("dpotrf_")
 public func dpotrf_(
     _ __uplo: UnsafeMutablePointer<CChar>!,
@@ -143,6 +149,7 @@ public func dpotrf_(
 ///   `A * X = B`  or  `A**T * X = B`,
 /// where A is a triangular matrix of order N, and B is an N-by-NRHS matrix.
 /// A check is made to verify that A is nonsingular.
+@inlinable
 @_silgen_name("dtrtrs_")
 public func dtrtrs_(
     _ __uplo: UnsafeMutablePointer<CChar>!,

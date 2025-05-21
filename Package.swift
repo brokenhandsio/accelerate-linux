@@ -12,7 +12,8 @@ let package = Package(
     targets: [
         .target(
             name: "AccelerateLinux",
-            dependencies: ["CBLAS", "CLAPACK"]
+            dependencies: ["CBLAS", "CLAPACK"],
+            swiftSettings: swiftSettings
         ),
         .systemLibrary(
             name: "CBLAS",
@@ -30,13 +31,15 @@ let package = Package(
         ),
         .testTarget(
             name: "AccelerateLinuxTests",
-            dependencies: ["AccelerateLinux"]
+            dependencies: ["AccelerateLinux"],
+            swiftSettings: swiftSettings
         ),
     ]
 )
 
 var swiftSettings: [SwiftSetting] {
     [
-        .enableUpcomingFeature("ExistentialAny")
+        .enableExperimentalFeature("Extern"),
+        .enableUpcomingFeature("ExistentialAny"),
     ]
 }
