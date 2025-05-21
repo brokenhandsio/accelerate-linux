@@ -12,7 +12,10 @@ let package = Package(
     targets: [
         .target(
             name: "AccelerateLinux",
-            dependencies: ["CBLAS", "CLAPACK"]
+            dependencies: ["CBLAS", "CLAPACK"],
+            swiftSettings: [
+                .enableExperimentalFeature("Extern")
+            ]
         ),
         .systemLibrary(
             name: "CBLAS",

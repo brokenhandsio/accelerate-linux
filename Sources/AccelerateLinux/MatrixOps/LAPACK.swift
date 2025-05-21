@@ -13,7 +13,7 @@ import CLAPACK
 /// upper triangular.  The factored form of A is then used to solve the
 /// system of equations A * X = B.
 @inlinable
-@inline(__always)
+@_extern(c, "dgesv_")
 public func dgesv_(
     _ __n: UnsafeMutablePointer<__CLPK_integer>!,
     _ __nrhs: UnsafeMutablePointer<__CLPK_integer>!,
@@ -23,20 +23,7 @@ public func dgesv_(
     _ __b: UnsafeMutablePointer<__CLPK_doublereal>!,
     _ __ldb: UnsafeMutablePointer<__CLPK_integer>!,
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
-) -> Int32 {
-    let result = CLAPACK.LAPACKE_dgesv(
-        LAPACK_COL_MAJOR,
-        __n.pointee,
-        __nrhs.pointee,
-        __a,
-        __lda.pointee,
-        __ipiv,
-        __b,
-        __ldb.pointee
-    )
-    __info.pointee = result
-    return result
-}
+) -> Int32
 
 /// Computes the singular value decomposition (SVD) of a real
 /// M-by-N matrix A, optionally computing the left and/or right singular
@@ -53,7 +40,7 @@ public func dgesv_(
 ///
 /// Note: that the routine returns V**T, not V.
 @inlinable
-@inline(__always)
+@_extern(c, "dgesvd_")
 public func dgesvd_(
     _ __jobu: UnsafeMutablePointer<CChar>!,
     _ __jobvt: UnsafeMutablePointer<CChar>!,
@@ -69,26 +56,7 @@ public func dgesvd_(
     _ __work: UnsafeMutablePointer<__CLPK_doublereal>!,
     _ __lwork: UnsafeMutablePointer<__CLPK_integer>!,
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
-) -> Int32 {
-    let result = CLAPACK.LAPACKE_dgesvd_work(
-        LAPACK_COL_MAJOR,
-        __jobu.pointee,
-        __jobvt.pointee,
-        __m.pointee,
-        __n.pointee,
-        __a,
-        __lda.pointee,
-        __s,
-        __u,
-        __ldu.pointee,
-        __vt,
-        __ldvt.pointee,
-        __work,
-        __lwork.pointee
-    )
-    __info.pointee = result
-    return result
-}
+) -> Int32
 
 /// Computes an LU factorization of a general M-by-N matrix A
 /// using partial pivoting with row interchanges.
@@ -101,7 +69,7 @@ public func dgesvd_(
 ///
 /// This is the right-looking Level 3 BLAS version of the algorithm.
 @inlinable
-@inline(__always)
+@_extern(c, "dgetrf_")
 public func dgetrf_(
     _ __m: UnsafeMutablePointer<__CLPK_integer>!,
     _ __n: UnsafeMutablePointer<__CLPK_integer>!,
@@ -109,18 +77,7 @@ public func dgetrf_(
     _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
     _ __ipiv: UnsafeMutablePointer<__CLPK_integer>!,
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
-) -> Int32 {
-    let result = CLAPACK.LAPACKE_dgetrf(
-        LAPACK_COL_MAJOR,
-        __m.pointee,
-        __n.pointee,
-        __a,
-        __lda.pointee,
-        __ipiv
-    )
-    __info.pointee = result
-    return result
-}
+) -> Int32
 
 /// Computes the inverse of a matrix using the LU factorization
 /// computed by ``dgterf_``.
@@ -128,7 +85,7 @@ public func dgetrf_(
 /// This method inverts U and then computes `inv(A)` by solving the system
 /// `inv(A)*L = inv(U) for inv(A)`.
 @inlinable
-@inline(__always)
+@_extern(c, "dgetri_")
 public func dgetri_(
     _ __n: UnsafeMutablePointer<__CLPK_integer>!,
     _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
@@ -137,19 +94,7 @@ public func dgetri_(
     _ __work: UnsafeMutablePointer<__CLPK_doublereal>!,
     _ __lwork: UnsafeMutablePointer<__CLPK_integer>!,
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
-) -> Int32 {
-    let result = CLAPACK.LAPACKE_dgetri_work(
-        LAPACK_COL_MAJOR,
-        __n.pointee,
-        __a,
-        __lda.pointee,
-        __ipiv,
-        __work,
-        __lwork.pointee
-    )
-    __info.pointee = result
-    return result
-}
+) -> Int32
 
 /// Computes for an N-by-N real nonsymmetric matrix A, the
 /// eigenvalues and, optionally, the left and/or right eigenvectors.
@@ -164,7 +109,7 @@ public func dgetri_(
 /// The computed eigenvectors are normalized to have Euclidean norm
 /// equal to 1 and largest component real.
 @inlinable
-@inline(__always)
+@_extern(c, "dgeev_")
 public func dgeev_(
     _ __jobvl: UnsafeMutablePointer<CChar>!,
     _ __jobvr: UnsafeMutablePointer<CChar>!,
@@ -180,9 +125,7 @@ public func dgeev_(
     _ __work: UnsafeMutablePointer<__CLPK_doublereal>!,
     _ __lwork: UnsafeMutablePointer<__CLPK_integer>!,
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
-) {
-    CLAPACK.dgeev_(__jobvl, __jobvr, __n, __a, __lda, __wr, __wi, __vl, __ldvl, __vr, __ldvr, __work, __lwork, __info, 1, 1)
-}
+)
 
 /// Computes the Cholesky factorization of a real symmetric positive definite matrix A.
 ///
@@ -193,25 +136,21 @@ public func dgeev_(
 ///
 /// This is the block version of the algorithm, calling Level 3 BLAS.
 @inlinable
-@inline(__always)
+@_extern(c, "dpotrf_")
 public func dpotrf_(
     _ __uplo: UnsafeMutablePointer<CChar>!,
     _ __n: UnsafeMutablePointer<__CLPK_integer>!,
     _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
     _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
-) -> Int32 {
-    let result = CLAPACK.LAPACKE_dpotrf(LAPACK_COL_MAJOR, __uplo.pointee, __n.pointee, __a, __lda.pointee)
-    __info.pointee = result
-    return result
-}
+) -> Int32
 
 /// Solves a triangular system of the form
 ///   `A * X = B`  or  `A**T * X = B`,
 /// where A is a triangular matrix of order N, and B is an N-by-NRHS matrix.
 /// A check is made to verify that A is nonsingular.
 @inlinable
-@inline(__always)
+@_extern(c, "dtrtrs_")
 public func dtrtrs_(
     _ __uplo: UnsafeMutablePointer<CChar>!,
     _ __trans: UnsafeMutablePointer<CChar>!,
@@ -223,20 +162,5 @@ public func dtrtrs_(
     _ __b: UnsafeMutablePointer<__CLPK_doublereal>!,
     _ __db: UnsafeMutablePointer<__CLPK_integer>!,
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
-) -> Int32 {
-    let result = CLAPACK.LAPACKE_dtrtrs(
-        LAPACK_COL_MAJOR,
-        __uplo.pointee,
-        __trans.pointee,
-        __diag.pointee,
-        __n.pointee,
-        __nrhs.pointee,
-        __a,
-        __lda.pointee,
-        __b,
-        __db.pointee
-    )
-    __info.pointee = result
-    return result
-}
+) -> Int32
 #endif  // canImport(Accelerate)

@@ -27,7 +27,7 @@ import CBLAS
 ///     C←αBA + βC
 /// with optional use of transposed forms of A, B, or both.
 @inlinable
-@inline(__always)
+@_extern(c, "cblas_dgemm")
 public func cblas_dgemm(
     _ __Order: CBLAS_ORDER,
     _ __TransA: CBLAS_TRANSPOSE,
@@ -43,7 +43,5 @@ public func cblas_dgemm(
     _ __beta: Double,
     _ __C: UnsafeMutablePointer<Double>!,
     _ __ldc: blasint
-) {
-    CBLAS.cblas_dgemm(__Order, __TransA, __TransB, __M, __N, __K, __alpha, __A, __lda, __B, __ldb, __beta, __C, __ldc)
-}
+)
 #endif  // canImport(Accelerate)
