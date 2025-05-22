@@ -12,21 +12,21 @@ struct LAPACKTests {
         let LDA = N
         let LDB = N
 
-        var n = __CLPK_integer(N)
-        var nrhs = __CLPK_integer(NRHS)
-        var lda = __CLPK_integer(LDA)
-        var ldb = __CLPK_integer(LDB)
-        var info = __CLPK_integer(0)
+        var n = __LAPACK_int(N)
+        var nrhs = __LAPACK_int(NRHS)
+        var lda = __LAPACK_int(LDA)
+        var ldb = __LAPACK_int(LDB)
+        var info = __LAPACK_int(0)
 
-        var ipiv = [__CLPK_integer](repeating: 0, count: Int(N))
-        var a: [__CLPK_doublereal] = [
+        var ipiv = [__LAPACK_int](repeating: 0, count: Int(N))
+        var a: [Double] = [
             6.80, -2.11, 5.66, 5.97, 8.23, -6.05, -3.30,
             5.36, -4.44, 1.08, -0.45, 2.58, -2.70, 0.27,
             9.04, 8.32, 2.71, 4.35, -7.17, 2.14, -9.67,
             -5.14, -7.26, 6.08, -6.87,
         ]
 
-        var b: [__CLPK_doublereal] = [
+        var b: [Double] = [
             4.02, 6.19, -8.22, -7.57, -3.03, -1.56, 4.00, -8.67,
             1.75, 2.86, 9.81, -4.09, -4.57, -8.61, 8.99,
         ]
@@ -56,25 +56,25 @@ struct LAPACKTests {
         let LDU = M
         let LDVT = N
 
-        var m = __CLPK_integer(M)
-        var n = __CLPK_integer(N)
-        var lda = __CLPK_integer(LDA)
-        var ldu = __CLPK_integer(LDU)
-        var ldvt = __CLPK_integer(LDVT)
-        var info = __CLPK_integer(0)
-        var lwork = __CLPK_integer(-1)
-        var wkopt = __CLPK_doublereal(0)
+        var m = __LAPACK_int(M)
+        var n = __LAPACK_int(N)
+        var lda = __LAPACK_int(LDA)
+        var ldu = __LAPACK_int(LDU)
+        var ldvt = __LAPACK_int(LDVT)
+        var info = __LAPACK_int(0)
+        var lwork = __LAPACK_int(-1)
+        var wkopt = Double(0)
 
-        var a: [__CLPK_doublereal] = [
+        var a: [Double] = [
             8.79, 6.11, -9.15, 9.57, -3.49, 9.84, 9.93, 6.91,
             -7.93, 1.64, 4.02, 0.15, 9.83, 5.04, 4.86, 8.83,
             9.80, -8.99, 5.45, -0.27, 4.85, 0.74, 10.00, -6.02,
             3.16, 7.98, 3.01, 5.80, 4.27, -5.31,
         ]
 
-        var s = [__CLPK_doublereal](repeating: 0, count: Int(min(m, n)))
-        var u = [__CLPK_doublereal](repeating: 0, count: Int(ldu * m))
-        var vt = [__CLPK_doublereal](repeating: 0, count: Int(ldvt * n))
+        var s = [Double](repeating: 0, count: Int(min(m, n)))
+        var u = [Double](repeating: 0, count: Int(ldu * m))
+        var vt = [Double](repeating: 0, count: Int(ldvt * n))
 
         let jobu = "A"
         let jobvt = "A"
@@ -88,8 +88,8 @@ struct LAPACKTests {
             }
         }
 
-        lwork = __CLPK_integer(wkopt)
-        var work = [__CLPK_doublereal](repeating: 0, count: Int(lwork))
+        lwork = __LAPACK_int(wkopt)
+        var work = [Double](repeating: 0, count: Int(lwork))
 
         jobu.withCString { jobuPtr in
             jobvt.withCString { jobvtPtr in
@@ -121,14 +121,14 @@ struct LAPACKTests {
         let N = 4
         let LDA = M
 
-        var m = __CLPK_integer(M)
-        var n = __CLPK_integer(N)
-        var lda = __CLPK_integer(LDA)
-        var info = __CLPK_integer(0)
+        var m = __LAPACK_int(M)
+        var n = __LAPACK_int(N)
+        var lda = __LAPACK_int(LDA)
+        var info = __LAPACK_int(0)
 
-        var ipiv = [__CLPK_integer](repeating: 0, count: Int(min(m, n)))
+        var ipiv = [__LAPACK_int](repeating: 0, count: Int(min(m, n)))
 
-        var a: [__CLPK_doublereal] = [
+        var a: [Double] = [
             1.80, 5.25, 1.58, -1.11,
             2.88, -2.95, -2.69, -0.66,
             2.05, -0.95, -2.90, -0.59,
@@ -156,14 +156,14 @@ struct LAPACKTests {
         let N = 4
         let LDA = M
 
-        var m = __CLPK_integer(M)
-        var n = __CLPK_integer(N)
-        var lda = __CLPK_integer(LDA)
-        var info = __CLPK_integer(0)
+        var m = __LAPACK_int(M)
+        var n = __LAPACK_int(N)
+        var lda = __LAPACK_int(LDA)
+        var info = __LAPACK_int(0)
 
-        var ipiv = [__CLPK_integer](repeating: 0, count: Int(min(m, n)))
+        var ipiv = [__LAPACK_int](repeating: 0, count: Int(min(m, n)))
 
-        var a: [__CLPK_doublereal] = [
+        var a: [Double] = [
             1.80, 5.25, 1.58, -1.11,
             2.88, -2.95, -2.69, -0.66,
             2.05, -0.95, -2.90, -0.59,
@@ -173,8 +173,8 @@ struct LAPACKTests {
         // A is nonsymmetric and must be factorized first
         _ = dgetrf_(&m, &n, &a, &lda, &ipiv, &info)
 
-        var work = [__CLPK_doublereal](repeating: 0.0, count: Int(m))
-        var lwork = __CLPK_integer(64 * n)
+        var work = [Double](repeating: 0.0, count: Int(m))
+        var lwork = __LAPACK_int(64 * n)
 
         _ = dgetri_(&n, &a, &lda, &ipiv, &work, &lwork, &info)
 
@@ -198,16 +198,16 @@ struct LAPACKTests {
         let LDVL = N
         let LDVR = N
 
-        var n = __CLPK_integer(N)
-        var lda = __CLPK_integer(LDA)
-        var ldvl = __CLPK_integer(LDVL)
-        var ldvr = __CLPK_integer(LDVR)
-        var info = __CLPK_integer(0)
-        var lwork = __CLPK_integer(0)
-        var wkopt = __CLPK_doublereal(0)
-        var work = [__CLPK_doublereal](repeating: 0, count: Int(lwork))
+        var n = __LAPACK_int(N)
+        var lda = __LAPACK_int(LDA)
+        var ldvl = __LAPACK_int(LDVL)
+        var ldvr = __LAPACK_int(LDVR)
+        var info = __LAPACK_int(0)
+        var lwork = __LAPACK_int(0)
+        var wkopt = Double(0)
+        var work = [Double](repeating: 0, count: Int(lwork))
 
-        var a: [__CLPK_doublereal] = [
+        var a: [Double] = [
             -1.01, 3.98, 3.30, 4.43, 7.31,
             0.86, 0.53, 8.26, 4.96, -6.43,
             -4.60, -7.04, -3.89, -7.66, -6.16,
@@ -215,10 +215,10 @@ struct LAPACKTests {
             -4.81, 3.55, -1.51, 6.18, 5.58,
         ]
 
-        var wr = [__CLPK_doublereal](repeating: 0, count: Int(n))
-        var wi = [__CLPK_doublereal](repeating: 0, count: Int(n))
-        var vl = [__CLPK_doublereal](repeating: 0, count: Int(ldvl * n))
-        var vr = [__CLPK_doublereal](repeating: 0, count: Int(ldvr * n))
+        var wr = [Double](repeating: 0, count: Int(n))
+        var wi = [Double](repeating: 0, count: Int(n))
+        var vl = [Double](repeating: 0, count: Int(ldvl * n))
+        var vr = [Double](repeating: 0, count: Int(ldvr * n))
 
         let jobvl = "N"
         let jobvr = "V"
@@ -233,8 +233,8 @@ struct LAPACKTests {
                     mutableJobvlPtr, mutableJobvrPtr, &n, &a, &lda, &wr, &wi, &vl, &ldvl, &vr, &ldvr, &wkopt, &lwork, &info
                 )
 
-                lwork = __CLPK_integer(wkopt)
-                work = [__CLPK_doublereal](repeating: 0, count: Int(lwork))
+                lwork = __LAPACK_int(wkopt)
+                work = [Double](repeating: 0, count: Int(lwork))
 
                 _ = dgeev_(
                     mutableJobvlPtr, mutableJobvrPtr, &n, &a, &lda, &wr, &wi, &vl, &ldvl, &vr, &ldvr, &work, &lwork, &info
@@ -268,11 +268,11 @@ struct LAPACKTests {
         let N = 4
         let LDA = N
 
-        var n = __CLPK_integer(N)
-        var lda = __CLPK_integer(LDA)
-        var info = __CLPK_integer(0)
+        var n = __LAPACK_int(N)
+        var lda = __LAPACK_int(LDA)
+        var info = __LAPACK_int(0)
 
-        var a: [__CLPK_doublereal] = [
+        var a: [Double] = [
             4.16, -3.12, 0.56, -0.10,
             0.00, 5.03, -0.83, 1.18,
             0.00, 0.00, 0.76, 0.34,
@@ -303,20 +303,20 @@ struct LAPACKTests {
         let NRHS = 2
         let LDA = N
 
-        var n = __CLPK_integer(N)
-        var nrhs = __CLPK_integer(NRHS)
-        var lda = __CLPK_integer(LDA)
-        var ldb = __CLPK_integer(N)
-        var info = __CLPK_integer(0)
+        var n = __LAPACK_int(N)
+        var nrhs = __LAPACK_int(NRHS)
+        var lda = __LAPACK_int(LDA)
+        var ldb = __LAPACK_int(N)
+        var info = __LAPACK_int(0)
 
-        var a: [__CLPK_doublereal] = [
+        var a: [Double] = [
             4.30, -3.96, 0.40, -0.27,
             0.00, -4.87, 0.31, 0.07,
             0.00, 0.00, -8.02, -5.95,
             0.00, 0.00, 0.00, 0.12,
         ]
 
-        var b: [__CLPK_doublereal] = [
+        var b: [Double] = [
             -12.90, 16.75, -17.55, -11.04,
             -21.50, 14.93, 6.33, 8.09,
         ]
