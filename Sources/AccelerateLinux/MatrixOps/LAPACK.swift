@@ -160,7 +160,7 @@ public func dtrtrs_(
     _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
     _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
     _ __b: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __db: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __ldb: UnsafeMutablePointer<__CLPK_integer>!,
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
 ) -> Int32
 #endif  // canImport(Accelerate)
