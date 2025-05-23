@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "accelerate-linux",
+    platforms: [.macOS(.v14)],
     products: [
         .library(
             name: "AccelerateLinux",
@@ -13,6 +14,9 @@ let package = Package(
         .target(
             name: "AccelerateLinux",
             dependencies: ["CBLAS", "CLAPACK"],
+            cSettings: [
+                .define("ACCELERATE_NEW_LAPACK")
+            ],
             swiftSettings: [
                 .enableExperimentalFeature("Extern")
             ]

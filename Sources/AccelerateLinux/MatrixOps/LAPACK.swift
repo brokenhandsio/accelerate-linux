@@ -15,15 +15,15 @@ import CLAPACK
 @inlinable
 @_extern(c, "dgesv_")
 public func dgesv_(
-    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __nrhs: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __ipiv: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __b: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __ldb: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __info: UnsafeMutablePointer<__CLPK_integer>!
-) -> Int32
+    _ n: UnsafePointer<__LAPACK_int>,
+    _ nrhs: UnsafePointer<__LAPACK_int>,
+    _ a: UnsafeMutablePointer<Double>?,
+    _ lda: UnsafePointer<__LAPACK_int>,
+    _ ipiv: UnsafeMutablePointer<__LAPACK_int>?,
+    _ b: UnsafeMutablePointer<Double>?,
+    _ ldb: UnsafePointer<__LAPACK_int>,
+    _ info: UnsafeMutablePointer<__LAPACK_int>
+)
 
 /// Computes the singular value decomposition (SVD) of a real
 /// M-by-N matrix A, optionally computing the left and/or right singular
@@ -42,21 +42,20 @@ public func dgesv_(
 @inlinable
 @_extern(c, "dgesvd_")
 public func dgesvd_(
-    _ __jobu: UnsafeMutablePointer<CChar>!,
-    _ __jobvt: UnsafeMutablePointer<CChar>!,
-    _ __m: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __s: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __u: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __ldu: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __vt: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __ldvt: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __work: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __lwork: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __info: UnsafeMutablePointer<__CLPK_integer>!
-) -> Int32
+    _ jobu: UnsafePointer<CChar>,
+    _ jobvt: UnsafePointer<CChar>,
+    _ m: UnsafePointer<__LAPACK_int>,
+    _ n: UnsafePointer<__LAPACK_int>,
+    _ a: UnsafeMutablePointer<Double>?,
+    _ lda: UnsafePointer<__LAPACK_int>,
+    _ s: UnsafeMutablePointer<Double>?,
+    _ u: UnsafeMutablePointer<Double>?,
+    _ ldu: UnsafePointer<__LAPACK_int>,
+    _ vt: UnsafeMutablePointer<Double>?,
+    _ ldvt: UnsafePointer<__LAPACK_int>,
+    _ work: UnsafeMutablePointer<Double>,
+    _ lwork: UnsafePointer<__LAPACK_int>,
+    _ info: UnsafeMutablePointer<__LAPACK_int>)
 
 /// Computes an LU factorization of a general M-by-N matrix A
 /// using partial pivoting with row interchanges.
@@ -71,13 +70,13 @@ public func dgesvd_(
 @inlinable
 @_extern(c, "dgetrf_")
 public func dgetrf_(
-    _ __m: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __ipiv: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __info: UnsafeMutablePointer<__CLPK_integer>!
-) -> Int32
+    _ m: UnsafePointer<__LAPACK_int>,
+    _ n: UnsafePointer<__LAPACK_int>,
+    _ a: UnsafeMutablePointer<Double>?,
+    _ lda: UnsafePointer<__LAPACK_int>,
+    _ ipiv: UnsafeMutablePointer<__LAPACK_int>?,
+    _ info: UnsafeMutablePointer<__LAPACK_int>
+)
 
 /// Computes the inverse of a matrix using the LU factorization
 /// computed by ``dgterf_``.
@@ -87,14 +86,14 @@ public func dgetrf_(
 @inlinable
 @_extern(c, "dgetri_")
 public func dgetri_(
-    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __ipiv: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __work: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __lwork: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __info: UnsafeMutablePointer<__CLPK_integer>!
-) -> Int32
+    _ n: UnsafePointer<__LAPACK_int>,
+    _ a: UnsafeMutablePointer<Double>?,
+    _ lda: UnsafePointer<__LAPACK_int>,
+    _ ipiv: UnsafePointer<__LAPACK_int>?,
+    _ work: UnsafeMutablePointer<Double>,
+    _ lwork: UnsafePointer<__LAPACK_int>,
+    _ info: UnsafeMutablePointer<__LAPACK_int>
+)
 
 /// Computes for an N-by-N real nonsymmetric matrix A, the
 /// eigenvalues and, optionally, the left and/or right eigenvectors.
@@ -113,18 +112,18 @@ public func dgetri_(
 public func dgeev_(
     _ __jobvl: UnsafeMutablePointer<CChar>!,
     _ __jobvr: UnsafeMutablePointer<CChar>!,
-    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __wr: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __wi: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __vl: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __ldvl: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __vr: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __ldvr: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __work: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __lwork: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __info: UnsafeMutablePointer<__CLPK_integer>!
+    _ __n: UnsafeMutablePointer<__LAPACK_int>!,
+    _ __a: UnsafeMutablePointer<Double>!,
+    _ __lda: UnsafeMutablePointer<__LAPACK_int>!,
+    _ __wr: UnsafeMutablePointer<Double>!,
+    _ __wi: UnsafeMutablePointer<Double>!,
+    _ __vl: UnsafeMutablePointer<Double>!,
+    _ __ldvl: UnsafeMutablePointer<__LAPACK_int>!,
+    _ __vr: UnsafeMutablePointer<Double>!,
+    _ __ldvr: UnsafeMutablePointer<__LAPACK_int>!,
+    _ __work: UnsafeMutablePointer<Double>!,
+    _ __lwork: UnsafeMutablePointer<__LAPACK_int>!,
+    _ __info: UnsafeMutablePointer<__LAPACK_int>!
 )
 
 /// Computes the Cholesky factorization of a real symmetric positive definite matrix A.
@@ -138,12 +137,12 @@ public func dgeev_(
 @inlinable
 @_extern(c, "dpotrf_")
 public func dpotrf_(
-    _ __uplo: UnsafeMutablePointer<CChar>!,
-    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __info: UnsafeMutablePointer<__CLPK_integer>!
-) -> Int32
+    _ uplo: UnsafePointer<CChar>,
+    _ n: UnsafePointer<__LAPACK_int>,
+    _ a: UnsafeMutablePointer<Double>?,
+    _ lda: UnsafePointer<__LAPACK_int>,
+    _ info: UnsafeMutablePointer<__LAPACK_int>
+)
 
 /// Solves a triangular system of the form
 ///   `A * X = B`  or  `A**T * X = B`,
@@ -152,15 +151,15 @@ public func dpotrf_(
 @inlinable
 @_extern(c, "dtrtrs_")
 public func dtrtrs_(
-    _ __uplo: UnsafeMutablePointer<CChar>!,
-    _ __trans: UnsafeMutablePointer<CChar>!,
-    _ __diag: UnsafeMutablePointer<CChar>!,
-    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __nrhs: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __b: UnsafeMutablePointer<__CLPK_doublereal>!,
-    _ __ldb: UnsafeMutablePointer<__CLPK_integer>!,
-    _ __info: UnsafeMutablePointer<__CLPK_integer>!
-) -> Int32
+    _ uplo: UnsafePointer<CChar>,
+    _ trans: UnsafePointer<CChar>,
+    _ diag: UnsafePointer<CChar>,
+    _ n: UnsafePointer<__LAPACK_int>,
+    _ nrhs: UnsafePointer<__LAPACK_int>,
+    _ a: UnsafePointer<Double>?,
+    _ lda: UnsafePointer<__LAPACK_int>,
+    _ b: UnsafeMutablePointer<Double>?,
+    _ ldb: UnsafePointer<__LAPACK_int>,
+    _ info: UnsafeMutablePointer<__LAPACK_int>
+)
 #endif  // canImport(Accelerate)
