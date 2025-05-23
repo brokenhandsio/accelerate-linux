@@ -11,7 +11,6 @@ import Glibc
 ///  - __C: The maximum value.
 ///  - __N: The number of elements in the vector.
 @inlinable
-@inline(__always)
 public func vDSP_maxvD(
     _ __A: UnsafePointer<Double>,
     _ __I: vDSP_Stride,
@@ -34,7 +33,6 @@ public func vDSP_maxvD(
 ///   - __C: The minimum value.
 ///   - __N: The number of elements in the vector.
 @inlinable
-@inline(__always)
 public func vDSP_minvD(
     _ __A: UnsafePointer<Double>,
     _ __I: vDSP_Stride,
@@ -60,7 +58,6 @@ public func vDSP_minvD(
 ///   - __IC: The distance between the elements in the output vector.
 ///   - __N: The number of elements that the function processes.
 @inlinable
-@inline(__always)
 public func vDSP_vaddD(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
@@ -87,7 +84,6 @@ public func vDSP_vaddD(
 ///   - __IC: The distance between the elements in the output vector.
 ///   - __N: The number of elements that the function processes.
 @inlinable
-@inline(__always)
 public func vDSP_vsubD(
     _ __B: UnsafePointer<Double>,
     _ __IB: vDSP_Stride,
@@ -114,7 +110,6 @@ public func vDSP_vsubD(
 ///   - __IC: The distance between the elements in the output vector.
 ///   - __N: The number of elements that the function processes.
 @inlinable
-@inline(__always)
 public func vDSP_vmulD(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
@@ -138,7 +133,6 @@ public func vDSP_vmulD(
 ///   - _: The base input array, x.
 ///   - _: The number of elements in the arrays.
 @inlinable
-@inline(__always)
 public func vvpow(
     _ z: UnsafeMutablePointer<Double>,
     _ y: UnsafePointer<Double>,
@@ -171,7 +165,6 @@ public func vvpow(
 ///   - __IC: Address stride for C.
 ///   - __N: The number of elements to process.
 @inlinable
-@inline(__always)
 public func vDSP_vclrD(
     _ __C: UnsafeMutablePointer<Double>,
     _ __IC: vDSP_Stride,
@@ -203,7 +196,6 @@ public func vDSP_vfillD(
 ///   - __IC: The distance between the elements in the output vector C.
 ///   - __N: The number of elements that the function processes.
 @inlinable
-@inline(__always)
 public func vDSP_vabsD(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
@@ -226,7 +218,6 @@ public func vDSP_vabsD(
 ///   - __IC: The distance between the elements in the output vector C.
 ///   - __N: The number of elements that the function processes.
 @inlinable
-@inline(__always)
 public func vDSP_vnegD(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
@@ -243,7 +234,6 @@ public func vDSP_vnegD(
 
 /// Computes the squared value of each element in the supplied double-precision vector.
 @inlinable
-@inline(__always)
 public func vDSP_vsqD(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
@@ -267,7 +257,6 @@ public func vDSP_vsqD(
 ///   - __C: On output, the dot product of the two vectors.
 ///   - __N: The number of elements to process.
 @inlinable
-@inline(__always)
 public func vDSP_dotprD(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
@@ -286,7 +275,6 @@ public func vDSP_dotprD(
 
 /// Calculates the double-precision vector test limit using the specified stride.
 @inlinable
-@inline(__always)
 public func vDSP_vlimD(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
@@ -315,7 +303,6 @@ public func vDSP_vlimD(
 ///   - __NLow: On output, the number of elements clipped to the low-clipping threshold.
 ///   - __NHigh: On output, the number of elements clipped to the high-clipping threshold.
 @inlinable
-@inline(__always)
 public func vDSP_vclipcD(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
@@ -354,7 +341,6 @@ public func vDSP_vclipcD(
 /// Vector A is weighted by scalar *S and added to the previous output point.
 /// The first element from vector A is not used in the sum.
 @inlinable
-@inline(__always)
 public func vDSP_vrsumD(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
@@ -385,7 +371,6 @@ public func vDSP_vrsumD(
 ///   - __Order: A value that specifies the sort order. Pass 1 to specify ascending order, or -1 for descending order.
 #warning("If the array is bigger than Int.max, vDSP_vsortD will do nothing. Find a solution")
 @inlinable
-@inline(__always)
 public func vDSP_vsortD(
     _ __C: UnsafeMutablePointer<Double>,
     _ __N: vDSP_Length,
@@ -419,7 +404,6 @@ public func vDSP_vsortD(
 ///   - __IC: The distance between the elements in the output vector.
 ///   - __N: The number of elements that the function processes.
 @inlinable
-@inline(__always)
 public func vDSP_vrampD(
     _ __A: UnsafePointer<Double>,
     _ __B: UnsafePointer<Double>,
@@ -449,7 +433,6 @@ public func vDSP_vrampD(
 ///    C[n] = A[n] <= B[n] ? A[n] : B[n];
 /// ```
 @inlinable
-@inline(__always)
 public func vDSP_vminD(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
@@ -476,7 +459,6 @@ public func vDSP_vminD(
 ///   - __IC: Stride for C.
 ///   - __N: The number of elements to process.
 @inlinable
-@inline(__always)
 public func vDSP_vmaxD(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
@@ -503,7 +485,6 @@ public func vDSP_vmaxD(
 ///   - __IC: The distance between the elements in the output vector.
 ///   - __N: The number of elements that the function processes.
 @inlinable
-@inline(__always)
 public func vDSP_vdivD(
     _ __B: UnsafePointer<Double>,
     _ __IB: vDSP_Stride,
@@ -529,7 +510,6 @@ public func vDSP_vdivD(
 ///   - __IC: The distance between the elements in the output vector.
 ///   - __N: The number of elements that the function processes.
 @inlinable
-@inline(__always)
 public func vDSP_vsdivD(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
@@ -554,7 +534,6 @@ public func vDSP_vsdivD(
 /// If x is +/-0, the result preserves the signed zero.
 /// If x is +/-inf, the result is NaN.
 @inlinable
-@inline(__always)
 public func vvsin(
     _ y: UnsafeMutablePointer<Double>,
     _ x: UnsafePointer<Double>,
@@ -573,7 +552,6 @@ public func vvsin(
 ///   - x: The input array, x.
 ///   - n: The number of elements in the arrays.
 @inlinable
-@inline(__always)
 public func vvsqrt(
     _ y: UnsafeMutablePointer<Double>,
     _ x: UnsafePointer<Double>,
@@ -592,7 +570,6 @@ public func vvsqrt(
 ///   - x: The input array, x.
 ///   - n: The number of elements in the arrays.
 @inlinable
-@inline(__always)
 public func vvexp(
     _ y: UnsafeMutablePointer<Double>,
     _ x: UnsafePointer<Double>,
@@ -611,7 +588,6 @@ public func vvexp(
 ///   - x: The input array, x.
 ///   - n: The number of elements in the arrays.
 @inlinable
-@inline(__always)
 public func vvlog(
     _ y: UnsafeMutablePointer<Double>,
     _ x: UnsafePointer<Double>,
