@@ -13,7 +13,6 @@ import CBLAS
 ///   - __N: The number of columns in the output matrix and the number of rows in the input matrix.
 /// - Warning: This function doesn’t support in-place operation.
 @inlinable
-@inline(__always)
 public func vDSP_mtransD(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
@@ -45,7 +44,6 @@ public func vDSP_mtransD(
 ///   - __N: The number of columns in matrices B and C.
 ///   - __P: The number of columns in matrix A and the number of rows in matrix B.
 @inlinable
-@inline(__always)
 public func vDSP_mmulD(
     _ __A: UnsafePointer<Double>,
     _ __IA: vDSP_Stride,
