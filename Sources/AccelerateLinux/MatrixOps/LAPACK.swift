@@ -163,4 +163,20 @@ public func dtrtrs_(
     _ __ldb: UnsafeMutablePointer<__CLPK_integer>!,
     _ __info: UnsafeMutablePointer<__CLPK_integer>!
 ) -> Int32
+
+@inlinable
+@_extern(c, "dgels_")
+public func dgels_(
+    _ __trans: UnsafeMutablePointer<CChar>!,
+    _ __m: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __n: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __nrhs: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __a: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __lda: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __b: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __ldb: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __work: UnsafeMutablePointer<__CLPK_doublereal>!,
+    _ __lwork: UnsafeMutablePointer<__CLPK_integer>!,
+    _ __info: UnsafeMutablePointer<__CLPK_integer>!
+) -> Int32
 #endif  // canImport(Accelerate)
