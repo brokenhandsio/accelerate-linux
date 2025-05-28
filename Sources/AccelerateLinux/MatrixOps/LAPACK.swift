@@ -162,4 +162,20 @@ public func dtrtrs_(
     _ ldb: UnsafePointer<__LAPACK_int>,
     _ info: UnsafeMutablePointer<__LAPACK_int>
 )
+
+@inlinable
+@_extern(c, "dgels_")
+public func dgels_(
+    _ trans: UnsafePointer<CChar>,
+    _ m: UnsafePointer<__LAPACK_int>,
+    _ n: UnsafePointer<__LAPACK_int>,
+    _ nrhs: UnsafePointer<__LAPACK_int>,
+    _ a: UnsafeMutablePointer<Double>?,
+    _ lda: UnsafePointer<__LAPACK_int>,
+    _ b: UnsafeMutablePointer<Double>?,
+    _ ldb: UnsafePointer<__LAPACK_int>,
+    _ work: UnsafeMutablePointer<Double>,
+    _ lwork: UnsafePointer<__LAPACK_int>,
+    _ info: UnsafeMutablePointer<__LAPACK_int>
+)
 #endif  // canImport(Accelerate)
